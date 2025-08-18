@@ -41,7 +41,8 @@ class LoginPage extends StatelessWidget {
                             child: Text(
                               "Login",
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                color: const Color.fromARGB(255, 147, 44, 231),
+                                fontWeight: FontWeight.w600,
                                 fontSize: 18,
                               ),
                             ),
@@ -67,7 +68,8 @@ class LoginPage extends StatelessWidget {
                             child: Text(
                               "Cadastrar-se",
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 18,
                               ),
                             ),
