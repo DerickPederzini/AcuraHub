@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                           height: 40,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromARGB(255, 0, 240, 205),
+                              backgroundColor: Color.fromARGB(255, 0, 205, 240),
                             ),
                             onPressed: () {
                               Navigator.pushNamed(context, "/");

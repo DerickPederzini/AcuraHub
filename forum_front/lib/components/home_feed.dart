@@ -14,7 +14,7 @@ class _HomeFeedState extends State<HomeFeed> {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView(children: [FeedCard()]),
+        child: ListView(children: [FeedCard(),]),
       ),
     );
   }
