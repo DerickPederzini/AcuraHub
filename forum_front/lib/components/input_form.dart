@@ -37,12 +37,20 @@ class _InputFormState extends State<InputForm> {
               )
             : null,
         hintStyle: TextStyle(color: Colors.grey.shade600),
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4)),
           borderSide: BorderSide(
             style: BorderStyle.solid,
-            width: 8,
-            color: Colors.black,
+            width: 1,
+            color: Colors.white60
+          )
+        ),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderSide: BorderSide(
+            style: BorderStyle.solid,
+            width: 1,
+            color: Colors.blue,
           ),
         ),
       ),

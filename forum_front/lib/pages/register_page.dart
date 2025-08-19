@@ -38,10 +38,13 @@ class RegisterPage extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color.fromARGB(255, 0, 240, 205),
                             ),
-                            onPressed: () => {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, "/");
+                            },
                             child: Text(
                               "Criar",
                               style: TextStyle(
+                                color: Colors.white70,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
@@ -68,6 +71,7 @@ class RegisterPage extends StatelessWidget {
                             child: Text(
                               "Voltar",
                               style: TextStyle(
+                                color: Color.fromARGB(255, 0, 205, 240),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),

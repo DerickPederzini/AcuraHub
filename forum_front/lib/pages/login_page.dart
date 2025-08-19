@@ -24,6 +24,7 @@ class LoginPage extends StatelessWidget {
                         InputForm(
                           placeholder: "E-mail",
                           iconPlace: Icons.email,
+                          
                         ),
                         SizedBox(height: 16),
                         InputForm(placeholder: "Senha", iconPlace: Icons.key),
@@ -41,8 +42,8 @@ class LoginPage extends StatelessWidget {
                             child: Text(
                               "Login",
                               style: TextStyle(
-                                color: const Color.fromARGB(255, 147, 44, 231),
-                                fontWeight: FontWeight.w600,
+                                color: Colors.white70,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
                             ),
@@ -68,8 +69,8 @@ class LoginPage extends StatelessWidget {
                             child: Text(
                               "Cadastrar-se",
                               style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 0, 205, 240),
+                                fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
                             ),
