@@ -10,11 +10,11 @@ class PerfilPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 64, 8, 8),
+            padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
             child: CircleAvatar(radius: 48),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
