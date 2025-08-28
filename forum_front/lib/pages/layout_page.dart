@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
+import 'package:forum_front/pages/create_page.dart';
 import 'package:forum_front/pages/home_feed.dart';
 import 'package:forum_front/pages/notifications_page.dart';
 import 'package:forum_front/pages/profile_page.dart';
@@ -19,7 +20,7 @@ class _HomePageState extends State<LayoutPage> {
   final List<Widget> _allPages = [
     HomeFeed(),
     Center(child: Text("Projects")),
-    Center(child: Text("Create")),
+    CreatePage(),
     NotificationsPage(),
     ProfilePage(),
   ];
