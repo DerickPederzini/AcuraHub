@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:forum_front/components/drawer.dart';
-import 'package:forum_front/components/home_feed.dart';
-import 'package:forum_front/pages/perfil_page.dart';
+import 'package:forum_front/components/navigation/drawer.dart';
+import 'package:forum_front/pages/home_feed.dart';
+import 'package:forum_front/pages/notifications_page.dart';
+import 'package:forum_front/pages/profile_page.dart';
 
-class HomePage extends StatefulWidget {
+class LayoutPage extends StatefulWidget {
   final int index;
 
-  const HomePage({super.key, required this.index});
+  const LayoutPage({super.key, required this.index});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LayoutPage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<LayoutPage> {
   late int selectedIndex;
 
   final List<Widget> _allPages = [
     HomeFeed(),
     Center(child: Text("Projects")),
     Center(child: Text("Create")),
-    Center(child: Text("Notifications")),
-    PerfilPage(),
+    NotificationsPage(),
+    ProfilePage(),
   ];
 
   @override
