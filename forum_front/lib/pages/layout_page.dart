@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
 import 'package:forum_front/pages/course_page.dart';
 import 'package:forum_front/pages/create_page.dart';
@@ -51,6 +52,8 @@ class _HomePageState extends State<LayoutPage> {
       ),
       drawer: AppDrawer(),
       body: _allPages[selectedIndex],
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: ChatButton(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         type: BottomNavigationBarType.fixed,
