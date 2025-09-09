@@ -1,6 +1,6 @@
 package br.com.Acura.board_back.entities;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -17,6 +17,12 @@ public class Modulo {
     private String title;
     private String description;
     private Integer progresso;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "etapa_id")
+    private Etapa etapa;
+
+    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Capitulo> capitulos;
 
 }
