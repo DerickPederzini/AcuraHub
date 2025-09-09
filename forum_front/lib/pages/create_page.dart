@@ -58,7 +58,7 @@ class CreatePageState extends State<CreatePage> {
                 
                 DropdownButtonFormField(
                   hint: Text("Selecione o setor envolvido"),
-                  initialValue: _selectedVal,
+                  value: _selectedVal,
                   items: _sectors
                       .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                       .toList(),
