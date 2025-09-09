@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/components/forms/form_button_fill.dart';
+import 'package:forum_front/components/forms/form_button_outlined.dart';
 import 'package:forum_front/components/forms/input_form.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -29,54 +31,12 @@ class RegisterPage extends StatelessWidget {
                         InputForm(placeholder: "Senha", iconPlace: Icons.key),
                         SizedBox(height: 16),
                         InputForm(placeholder: "CPF", iconPlace: Icons.person),
-
                         SizedBox(height: 64),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 40,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromARGB(255, 0, 240, 205),
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "/");
-                            },
-                            child: Text(
-                              "Criar",
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
+                        FormButtonFill(buttonText: "Criar", navigate: "/"),
                         SizedBox(height: 16),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 40,
-                          child: OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              textStyle: TextStyle(
-                                color: Color.fromARGB(255, 0, 205, 240),
-                              ),
-                              side: const BorderSide(
-                                color: Color.fromARGB(255, 0, 205, 240),
-                                width: 2,
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "/login");
-                            },
-                            child: Text(
-                              "Voltar",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 0, 205, 240),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
+                        FormButtonOutlined(
+                          buttonText: "Voltar",
+                          navigate: "/login",
                         ),
                       ],
                     ),
