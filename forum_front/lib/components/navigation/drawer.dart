@@ -12,7 +12,7 @@ class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
   static final allListItens = [
-    ListItens(icon: Icons.person, text: "Perfil", url: "/" ),
+    ListItens(icon: Icons.person, text: "Perfil", url: "/perfil" ),
     ListItens(icon: Icons.map, text: "Projetos", url: "/"),
     ListItens(icon: Icons.star, text: "Favoritos", url: "/"),
     ListItens(icon: Icons.leaderboard, text: "Desafios",url: "/"),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:forum_front/components/feed_card.dart';
+import 'package:forum_front/components/feed/feed_card.dart';
 
 class HomeFeed extends StatefulWidget {
   const HomeFeed({super.key});
@@ -11,8 +11,8 @@ class HomeFeed extends StatefulWidget {
 class _HomeFeedState extends State<HomeFeed> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
+    return Scaffold(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(children: [FeedCard(),]),
       ),
