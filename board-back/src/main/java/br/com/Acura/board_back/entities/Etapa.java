@@ -1,8 +1,9 @@
 package br.com.Acura.board_back.entities;
 
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
@@ -13,10 +14,12 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(of = "id")
 public class Etapa {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
     private Integer progresso;
+    @OneToMany(mappedBy = "etapa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Modulo> modulos;
 
 }
