@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/etapas")
+@RequestMapping("/etapas")
 public class EtapaController {
 
     @Autowired

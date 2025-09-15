@@ -17,6 +17,7 @@ public class Etapa {
     private Long id;
     private String titulo;
     private String urlImagem;
+    private String tema;
     @OneToMany(mappedBy = "etapa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Modulo> modulos;
 
