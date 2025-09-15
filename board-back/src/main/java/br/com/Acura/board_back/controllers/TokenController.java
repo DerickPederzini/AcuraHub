@@ -1,8 +1,8 @@
 package br.com.Acura.board_back.controllers;
 
-import br.com.Acura.board_back.data.dtos.CreateUsuarioDTO;
 import br.com.Acura.board_back.data.dtos.LoginRequest;
 import br.com.Acura.board_back.data.dtos.LoginResponse;
+import br.com.Acura.board_back.data.dtos.RegisterRequest;
 import br.com.Acura.board_back.services.RegistroService;
 import br.com.Acura.board_back.services.UsuarioService;
 import jakarta.validation.Valid;
@@ -25,12 +25,11 @@ public class TokenController {
     private UsuarioService usuarioService;
     @Autowired
     private RegistroService registroService;
-    @Autowired
-    private JwtEncoder jwtEncoder;
+//    @Autowired
+//    private JwtEncoder jwtEncoder;
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(LoginRequest request) {
-
         var usuario = usuarioService.findByEmailAndSenha(request);
 
         Long expira = 1000L;
@@ -42,15 +41,15 @@ public class TokenController {
                 .issuedAt(Instant.now())
                 .build();
 
-        String jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-
-        return ResponseEntity.ok(new LoginResponse(jwtValue, expira));
+//        String jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        String jwtValue = "";
+         return ResponseEntity.ok(new LoginResponse(jwtValue, expira));
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<String> createUsuario(@Valid @RequestBody CreateUsuarioDTO usuarioDTO) {
+    public ResponseEntity<String> createUsuario(@Valid @RequestBody RegisterRequest request) {
         try {
-            registroService.criar(usuarioDTO);
+            registroService.criar(request);
             return ResponseEntity.ok("Usuário Criado");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

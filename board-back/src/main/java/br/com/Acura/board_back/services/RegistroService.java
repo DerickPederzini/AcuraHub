@@ -1,6 +1,6 @@
 package br.com.Acura.board_back.services;
 
-import br.com.Acura.board_back.data.dtos.CreateUsuarioDTO;
+import br.com.Acura.board_back.data.dtos.RegisterRequest;
 import br.com.Acura.board_back.entities.Usuario;
 import br.com.Acura.board_back.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +12,17 @@ public class RegistroService {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
-    public void criar(CreateUsuarioDTO usuarioDTO) {
+    public void criar(RegisterRequest request) {
         Usuario usuario = new Usuario();
-        toEntity(new Usuario(), usuarioDTO);
+        toEntity(new Usuario(), request);
 
         usuarioRepository.save(usuario);
     }
 
-    private void toEntity(Usuario usuario, CreateUsuarioDTO usuarioDTO) {
-
+    private void toEntity(Usuario usuario, RegisterRequest usuarioDTO) {
+        usuario.setEmail(usuarioDTO.email());
+        usuario.setSenha(usuarioDTO.senha());
+        usuario.setCpf(usuarioDTO.cpf());
     }
 
 }

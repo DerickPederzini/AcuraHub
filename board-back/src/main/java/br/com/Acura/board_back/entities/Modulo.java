@@ -2,11 +2,10 @@ package br.com.Acura.board_back.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
-@Entity(name = "tb_etapa")
+@Entity(name = "tb_modulo")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,7 +17,6 @@ public class Modulo {
     private Long id;
     private String title;
     private String description;
-    private Integer progresso;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "etapa_id")

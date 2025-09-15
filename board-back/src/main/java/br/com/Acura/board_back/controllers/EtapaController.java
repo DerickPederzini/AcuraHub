@@ -5,7 +5,6 @@ import br.com.Acura.board_back.data.dtos.EtapaDTORequest;
 import br.com.Acura.board_back.data.dtos.EtapaDTOResponse;
 import br.com.Acura.board_back.services.EtapaService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ public class EtapaController {
     private EtapaService etapaService;
 
     @GetMapping
-    public ResponseEntity<List<EtapaDTOResponse>> getAllEtapas () {
+    public ResponseEntity<List<EtapaDTOResponse>> getAllEtapas() {
         return ResponseEntity.ok(etapaService.getAll());
     }
 
@@ -37,8 +36,6 @@ public class EtapaController {
         return ResponseEntity.created(uri).body(response);
 
     }
-
-
 
 
 }

@@ -14,17 +14,19 @@ public class UsuarioService {
     @Autowired
     IUsuarioRepository usuarioRepository;
 
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
+//    @Autowired
+//    BCryptPasswordEncoder passwordEncoder;
 
     public ResponseUsuarioDTO findByEmailAndSenha(LoginRequest request) {
-        Usuario usuario = usuarioRepository.findByEmaiL(request.email());
+        Usuario usuario = usuarioRepository.findByEmail(request.email());
 
-        if (!passwordEncoder.matches(request.senha(), usuario.getSenha())) {
-            throw new RuntimeException();
-        }
+//        if (!passwordEncoder.matches(request.senha(), usuario.getSenha())) {
+//            throw new RuntimeException();
+//        }
 
         return new ResponseUsuarioDTO(usuario);
     }
+
+    
 
 }
