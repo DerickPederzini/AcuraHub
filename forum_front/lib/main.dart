@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/pages/layout_page.dart';
 import 'package:forum_front/pages/login_page.dart';
+import 'package:forum_front/pages/module_page.dart';
 import 'package:forum_front/pages/register_page.dart';
 
 void main() {
@@ -22,10 +23,21 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/login",
       routes: {
-        "/": (context) => LayoutPage(index: 0,),
+        "/": (context) => LayoutPage(index: 0),
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
-        "/perfil": (context) => LayoutPage(index : 4),
+        "/perfil": (context) => LayoutPage(index: 4),
+      },
+      onGenerateRoute: (rt) {
+        if (rt.name == "/modulos") {
+          final etapaId = rt.arguments as int;
+          return MaterialPageRoute(
+            builder: (context) {
+              return ModulePage(etapaId: etapaId);
+            },
+          );
+        }
+        return null;
       },
     );
   }

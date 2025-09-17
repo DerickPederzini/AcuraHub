@@ -20,7 +20,12 @@ class _CourseCardState extends State<CourseCard> {
 
     if (screenWidth < 600) {
       return Container(
-        decoration: BoxDecoration(border: Border.all(width: 2, color: const Color.fromARGB(255, 242, 247, 248))),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 2,
+            color: const Color.fromARGB(255, 242, 247, 248),
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -89,7 +94,9 @@ class _CourseCardState extends State<CourseCard> {
                   ),
                   SizedBox(height: 16),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/modulos", arguments: widget.course.id);
+                    },
                     style: OutlinedButton.styleFrom(
                       minimumSize: Size(double.infinity, 40),
                       side: BorderSide(
