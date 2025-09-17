@@ -1,6 +1,5 @@
 package br.com.Acura.board_back.entities;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,9 +16,8 @@ public class Etapa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    @Enumerated(EnumType.STRING)
-    private Tipo tipo;
-    private Integer progresso;
+    private String urlImagem;
+    private String tema;
     @OneToMany(mappedBy = "etapa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Modulo> modulos;
 

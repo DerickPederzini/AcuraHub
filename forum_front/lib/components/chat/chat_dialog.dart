@@ -1,7 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/components/chat/chat_message.dart';
+import 'package:forum_front/constants/app_colors.dart';
 
-class ChatDialog extends StatelessWidget {
+class ChatDialog extends StatefulWidget {
   const ChatDialog({super.key});
+
+  @override
+  State<ChatDialog> createState() => _ChatDialogState();
+}
+
+class _ChatDialogState extends State<ChatDialog> {
+  final TextEditingController _controller = TextEditingController();
+  final List<Widget> _messages = [];
+
+  void _addMessage() {
+    setState(() {
+      if (_controller.text.trim().isEmpty) return;
+
+      if (_messages.length % 2 == 0) {
+        _messages.add(
+          ChatMessage(message: _controller.text.trim(), isMe: true),
+        );
+      } else {
+        _messages.add(
+          ChatMessage(message: _controller.text.trim(), isMe: false),
+        );
+      }
+
+      _controller.clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +43,49 @@ class ChatDialog extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              Text("Tela customizada", style: TextStyle(fontSize: 20)),
-              const SizedBox(height: 20),
-              Text("Aqui você pode colocar widgets livres"),
-              const Spacer(),
-              ElevatedButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text("Fechar"),
+              AppBar(
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                title: const Text("ChatBot"),
+                centerTitle: true,
+              ),
+
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _messages.length,
+                  itemBuilder: (context, index) {
+                    return _messages[index];
+                  },
+                  scrollDirection: Axis.vertical,
+                ),
+              ),
+
+              SafeArea(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          hintText: "Digite sua mensagem...",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      icon: const Icon(Icons.send),
+                      onPressed: () {
+                        _addMessage();
+                      },
+                      color: AppColors.blue_eurofarma,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -41,8 +105,10 @@ void showChatDialog(BuildContext context) {
     },
     transitionBuilder: (context, anim1, anim2, child) {
       return SlideTransition(
-        position: Tween(begin: const Offset(0, 1), end: Offset.zero)
-            .animate(anim1),
+        position: Tween(
+          begin: const Offset(0, 1),
+          end: Offset.zero,
+        ).animate(anim1),
         child: child,
       );
     },

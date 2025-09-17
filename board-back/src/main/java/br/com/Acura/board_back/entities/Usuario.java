@@ -1,27 +1,23 @@
 package br.com.Acura.board_back.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.List;
-
-@Entity(name = "tb_usuario")
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "tb_usuarios")
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String username;
+    private String cpf;
     private String email;
     private String senha;
-    private String username;
 
-    //PRECISA DE UMA TABELA INTERMEDIARIA COM CAPITULO
-
+    // Um usuário pode ter progresso em muitos capítulos
+//    @OneToMany(mappedBy = "usuario")
+//    private Set<ProgressoUsuario> progressos;
 }
