@@ -17,23 +17,29 @@ class _CourseCardState extends State<CourseCard> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    
+
     if (screenWidth < 600) {
       return Container(
-        color: AppColors.grey_dark,
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 2,
+            color: const Color.fromARGB(255, 242, 247, 248),
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.course.title,
+                    widget.course.titulo!,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    widget.course.theme,
+                    widget.course.tema!,
                     style: TextStyle(
                       fontSize: 16,
                       color: AppColors.text_create_page,
@@ -49,7 +55,7 @@ class _CourseCardState extends State<CourseCard> {
                 borderRadius: BorderRadius.zero,
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(widget.course.url),
+                  image: NetworkImage(widget.course.urlImagem!),
                 ),
               ),
             ),
@@ -65,7 +71,8 @@ class _CourseCardState extends State<CourseCard> {
                         child: SizedBox(
                           height: 2,
                           child: LinearProgressIndicator(
-                            value: widget.course.progress.toDouble(),
+                            // value: widget.course.progress?.toDouble(),
+                            value: 73,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
                               Colors.blue,
@@ -75,7 +82,8 @@ class _CourseCardState extends State<CourseCard> {
                       ),
                       SizedBox(width: 4),
                       Text(
-                        '${widget.course.progress}%',
+                        // '${widget.course.progress}%',
+                        '73%',
                         style: const TextStyle(
                           color: AppColors.grey_70,
                           fontWeight: FontWeight.bold,
@@ -86,7 +94,9 @@ class _CourseCardState extends State<CourseCard> {
                   ),
                   SizedBox(height: 16),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/modulos", arguments: widget.course.id);
+                    },
                     style: OutlinedButton.styleFrom(
                       minimumSize: Size(double.infinity, 40),
                       side: BorderSide(
@@ -125,7 +135,7 @@ class _CourseCardState extends State<CourseCard> {
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(widget.course.url),
+                  image: NetworkImage(widget.course.urlImagem!),
                 ),
               ),
             ),
@@ -135,7 +145,7 @@ class _CourseCardState extends State<CourseCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.course.title,
+                    widget.course.titulo!,
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -143,7 +153,7 @@ class _CourseCardState extends State<CourseCard> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    widget.course.theme,
+                    widget.course.tema!,
                     style: const TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 5),
