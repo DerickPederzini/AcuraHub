@@ -1,6 +1,7 @@
 package br.com.Acura.board_back.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
@@ -17,7 +18,9 @@ public class Capitulo {
     private Long id;
     private String titulo;
     private String body;
+    @Column(name = "url_video")
     private String videoURL;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modulo_id")
     private Modulo modulo;
