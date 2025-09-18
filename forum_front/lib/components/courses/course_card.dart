@@ -95,7 +95,11 @@ class _CourseCardState extends State<CourseCard> {
                   SizedBox(height: 16),
                   OutlinedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/modulos", arguments: widget.course.id);
+                      Navigator.pushNamed(
+                        context,
+                        "/modulos",
+                        arguments: widget.course.id,
+                      );
                     },
                     style: OutlinedButton.styleFrom(
                       minimumSize: Size(double.infinity, 40),
