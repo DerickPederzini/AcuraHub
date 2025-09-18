@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/chat/chat_message.dart';
 import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/models/chat.dart';
+import 'package:forum_front/services/chatService.dart';
 
 class ChatDialog extends StatefulWidget {
   const ChatDialog({super.key});
@@ -13,22 +15,31 @@ class _ChatDialogState extends State<ChatDialog> {
   final TextEditingController _controller = TextEditingController();
   final List<Widget> _messages = [];
 
-  void _addMessage() {
+  void _addMessage() async {
+    if (_controller.text.trim().isEmpty) return;
+
     setState(() {
-      if (_controller.text.trim().isEmpty) return;
-
-      if (_messages.length % 2 == 0) {
-        _messages.add(
-          ChatMessage(message: _controller.text.trim(), isMe: true),
-        );
-      } else {
-        _messages.add(
-          ChatMessage(message: _controller.text.trim(), isMe: false),
-        );
-      }
-
-      _controller.clear();
+      _messages.add(ChatMessage(message: _controller.text.trim(), isMe: true));
     });
+
+    try {
+      Chat answer = await postMessage(_controller.text);
+
+      setState(() {
+        _messages.add(
+          ChatMessage(
+            message: answer.answer.toString(),
+            isMe: false,
+          ),
+        );
+      });
+    } catch (e) {
+      setState(() {
+        _messages.add(ChatMessage(message: "Erro: $e", isMe: false));
+      });
+    }
+
+    _controller.clear();
   }
 
   @override

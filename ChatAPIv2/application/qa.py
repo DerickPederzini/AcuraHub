@@ -30,11 +30,11 @@ class QAService:
         result = self.qa_chain.invoke({"input": query})
         return {
             "answer": result["answer"],
-            "sources": [
-                {
-                    "file": d.metadata.get("source"),
-                    "chunk": d.metadata.get("chunk_index"),
-                }
-                for d in result["context"]
-            ],
+            # "sources": [
+            #     {
+            #         "file": d.metadata.get("source"),
+            #         "chunk": d.metadata.get("chunk_index"),
+            #     }
+            #     for d in result["context"]
+            # ],
         }
