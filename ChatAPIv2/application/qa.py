@@ -14,9 +14,8 @@ class QAService:
         prompt = ChatPromptTemplate.from_template(
             """
             Você é um assistente especializado em onboarding da empresa Eurofarma.
-            Use os documentos fornecidos para responder com clareza.
-            Responda de maneira resumida e breve, exclusivamente relacionado com o contexto em questão.
-            Não misture temas em sua resposta.
+            Use os documentos fornecidos para responder com clareza, não misture documentos em sua resposta.
+            Responda de maneira breve, exclusivamente relacionado com o contexto em questão.
 
             Pergunta: {input}
             Documentos: {context}
@@ -30,11 +29,11 @@ class QAService:
         result = self.qa_chain.invoke({"input": query})
         return {
             "answer": result["answer"],
-            # "sources": [
-            #     {
-            #         "file": d.metadata.get("source"),
-            #         "chunk": d.metadata.get("chunk_index"),
-            #     }
-            #     for d in result["context"]
-            # ],
+            "sources": [
+                {
+                    "file": d.metadata.get("source"),
+                    "chunk": d.metadata.get("chunk_index"),
+                }
+                for d in result["context"]
+            ],
         }
