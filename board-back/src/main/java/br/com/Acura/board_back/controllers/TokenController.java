@@ -32,13 +32,16 @@ public class TokenController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
         var usuario = usuarioService.findByEmailAndSenha(request);
 
-        Long expira = 1000L;
+        long expira = 3600;
 
         var claims = JwtClaimsSet.builder()
                 .issuer("EurONBoarding")
                 .subject(usuario.cpf())
                 .expiresAt(Instant.now().plusSeconds(expira))
                 .issuedAt(Instant.now())
+                .claim("id", usuario.id())
+                .claim("username", usuario.username())
+                .claim("email", usuario.email())
                 .build();
 
         String jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
