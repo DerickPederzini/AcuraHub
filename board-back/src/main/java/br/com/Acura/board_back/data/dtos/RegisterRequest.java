@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.br.CPF;
 public record RegisterRequest(
         @Email
         String email,
+        String username,
         String senha,
         @CPF
         String cpf) {

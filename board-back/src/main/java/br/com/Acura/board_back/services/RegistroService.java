@@ -14,7 +14,9 @@ public class RegistroService {
 
     public void criar(RegisterRequest request) {
         Usuario usuario = new Usuario();
-        toEntity(new Usuario(), request);
+        toEntity(usuario, request);
+
+        usuario = usuarioRepository.save(usuario);
 
         usuarioRepository.save(usuario);
     }
@@ -23,6 +25,7 @@ public class RegistroService {
         usuario.setEmail(usuarioDTO.email());
         usuario.setSenha(usuarioDTO.senha());
         usuario.setCpf(usuarioDTO.cpf());
+        usuario.setUsername(usuarioDTO.username());
     }
 
 }

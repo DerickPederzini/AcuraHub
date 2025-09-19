@@ -14,7 +14,7 @@ class ModulePage extends StatefulWidget {
 
 }
 class _ModulePageState extends State<ModulePage> {
-
+  
   late Future<List<Module>> list;
 
   @override

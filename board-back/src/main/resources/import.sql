@@ -15,4 +15,9 @@ INSERT INTO tb_capitulo (titulo, body, url_video, modulo_id) VALUES ('Introduç�
 INSERT INTO tb_capitulo (titulo, body, url_video, modulo_id) VALUES ('Introdução pt1', '2',  'JDIOASIJDSAIOL', 4)
 
 
+INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'deri@g', 'Derick', '1234')
+INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'nick@g', 'Nicolas', '1234')
+INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'jose@g', 'Edu', '1234')
+
+
 
