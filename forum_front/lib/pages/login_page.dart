@@ -91,7 +91,7 @@ class _LoginFormState extends State<LoginForm> {
           FormButtonFill(
             buttonText: "Login",
             onPressed: () {
-              Navigator.pushNamed(context, "/");
+              handleLogin(context);
             },
           ),
           SizedBox(height: 16),
