@@ -9,13 +9,17 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "tb_insignea")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "tb_insignea")
 public class Insignea {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String urlInsigea;
     private String nome;
 
@@ -25,6 +29,4 @@ public class Insignea {
 
     @ManyToMany(mappedBy = "insigneas")
     private Set<Usuario> usuarios = new HashSet<>();
-
-
 }

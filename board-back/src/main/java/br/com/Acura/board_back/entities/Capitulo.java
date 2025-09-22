@@ -25,4 +25,8 @@ public class Capitulo {
     @JoinColumn(name = "modulo_id")
     private Modulo modulo;
 
+    @OneToMany(mappedBy = "capitulo")
+    private List<ProgressoUsuario> progressoUsuarios;
+
+
 }

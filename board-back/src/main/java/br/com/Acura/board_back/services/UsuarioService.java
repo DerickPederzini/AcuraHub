@@ -19,10 +19,13 @@ public class UsuarioService {
     BCryptPasswordEncoder passwordEncoder;
 
     public ResponseUsuarioDTO findByEmailAndSenha(LoginRequest request) {
-        Usuario usuario = usuarioRepository.findByEmail(request.email());
+        Usuario usuario = usuarioRepository.findByEmail(request.email()).orElseThrow(() -> new RuntimeException("yeah"));
 
-        if (!passwordEncoder.matches(request.senha(), usuario.getSenha())) {
-            throw new RuntimeException();
+//        if (!passwordEncoder.matches(request.senha(), usuario.getSenha())) {
+//            throw new RuntimeException();
+//        }
+        if (!request.senha().equalsIgnoreCase(usuario.getSenha())){
+            throw new RuntimeException("yes");
         }
 
         return new ResponseUsuarioDTO(usuario);
@@ -30,7 +33,7 @@ public class UsuarioService {
 
 
     public ResponsePerfilDTO findByIdPerfil(Long id) {
-        Usuario usuario = usuarioRepository.findByIdWithInsigneaAndEtapa(id).orElseThrow(() -> new RuntimeException("errro"));
+        Usuario usuario = usuarioRepository.findAllByIdWithInsignea(id).orElseThrow(() -> new RuntimeException("errro"));
         return new ResponsePerfilDTO(usuario);
     }
 }
