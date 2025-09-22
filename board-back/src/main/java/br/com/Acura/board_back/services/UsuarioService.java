@@ -30,7 +30,7 @@ public class UsuarioService {
 
 
     public ResponsePerfilDTO findByIdPerfil(Long id) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("errro"));
-        return null;
+        Usuario usuario = usuarioRepository.findByIdWithInsigneaAndEtapa(id).orElseThrow(() -> new RuntimeException("errro"));
+        return new ResponsePerfilDTO(usuario);
     }
 }

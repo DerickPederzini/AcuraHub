@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_usuarios")
 @Getter
@@ -17,7 +20,13 @@ public class Usuario {
     private String email;
     private String senha;
 
-    // Um usuário pode ter progresso em muitos capítulos
-//    @OneToMany(mappedBy = "usuario")
-//    private Set<ProgressoUsuario> progressos;
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_insignea",
+            joinColumns = @JoinColumn(name = "id_insignea"),
+            inverseJoinColumns = @JoinColumn(name = "id_insignea")
+    )
+    private Set<Insignea> insigneas = new HashSet<>();
+
+
 }

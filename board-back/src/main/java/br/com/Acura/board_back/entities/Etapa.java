@@ -23,4 +23,8 @@ public class Etapa {
     @OneToMany(mappedBy = "etapa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Modulo> modulos;
 
+    @OneToOne(mappedBy = "etapa", cascade = CascadeType.ALL)
+    private Insignea insignea;
+
+
 }
