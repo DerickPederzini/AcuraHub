@@ -11,6 +11,9 @@ class AchievementCard extends StatefulWidget {
 }
 
 class _AchievementCardState extends State<AchievementCard> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -23,7 +26,7 @@ class _AchievementCardState extends State<AchievementCard> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              leading: Image.network(widget.achievements.urlIcon!),
+              leading: Image.asset(widget.achievements.urlIcon!),
               title: Text(widget.achievements.title!),
               subtitle: Text(widget.achievements.description!),
             ),
