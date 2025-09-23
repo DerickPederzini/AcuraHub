@@ -37,5 +37,10 @@ public class EtapaController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<EtapaDTOResponse> getEtapaById(@PathVariable Long id) {
+        EtapaDTOResponse etapaDTOResponse = etapaService.getById(id);
+        return ResponseEntity.ok(etapaDTOResponse);
+    }
 
 }

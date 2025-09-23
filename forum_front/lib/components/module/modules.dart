@@ -22,17 +22,39 @@ class _ModulesState extends State<Modules> {
         children: [
           Row(
             children: [
-              Text("${widget.index + 1}. "),
-              Text("${widget.module.title}"),
+              Text("${widget.index + 1}. ", style: TextStyle(fontSize: 14),),
+              Text("${widget.module.title}", style: TextStyle(fontSize: 14),),
             ],
           ),
           SizedBox(height: 16),
 
-          LinearProgressIndicator(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-            value: 10.00,
-            minHeight: 4,
-            valueColor: AlwaysStoppedAnimation(Colors.blue),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 2,
+                  child: LinearProgressIndicator(
+                    // value: widget.course.progress?.toDouble(),
+                    value: 73,
+                    backgroundColor: Colors.grey[300],
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      Colors.blue,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 4),
+              Text(
+                // '${widget.course.progress}%',
+                '73%',
+                style: const TextStyle(
+                  color: AppColors.grey_70,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 10,
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 24),
           OutlinedButton(

@@ -1,7 +1,7 @@
-INSERT INTO tb_etapa (titulo, tema, url_imagem) VALUES ('Plataforma Clic', 'INOVACAO', 'https://media.licdn.com/dms/image/sync/v2/D4D27AQHuANrUxz-R9g/articleshare-shrink_800/articleshare-shrink_800/0/1711896888135?e=2147483647&v=beta&t=NVQaXRXRfaioyhP4dxVB5xRTCpc65l4pMDcQKFCAwHY');
-INSERT INTO tb_etapa (titulo, tema, url_imagem) VALUES ('Plataforma Kaizen', 'INOVACAO', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
-INSERT INTO tb_etapa (titulo, tema, url_imagem) VALUES ('Programa EVA', 'INOVACAO', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
-INSERT INTO tb_etapa (titulo, tema, url_imagem) VALUES ('Oficina Digital', 'DESENVOLVIMENTO', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Plataforma Clic', 'INOVACAO', 'Aprenda uma das principais plataformas da Eurofarma, o Clic, onde suas ideias fazem diferença','https://media.licdn.com/dms/image/sync/v2/D4D27AQHuANrUxz-R9g/articleshare-shrink_800/articleshare-shrink_800/0/1711896888135?e=2147483647&v=beta&t=NVQaXRXRfaioyhP4dxVB5xRTCpc65l4pMDcQKFCAwHY');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Plataforma Kaizen', 'INOVACAO', 'Aprenda uma das principais plataformas da Eurofarma, o Clic, onde suas ideias podem fazer diferença', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Programa EVA', 'INOVACAO', 'Aprenda sobre o robô queridinho da Eurofarma o EVA, seu parceiro para todos os momentos', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Oficina Digital', 'DESENVOLVIMENTO', 'Utilize de ferramentas No Code em laboratórios para criar o qued desejar', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
 
 INSERT INTO tb_modulo (title, description, etapa_id) VALUES ('Introdução', 'Aprenda o básico.', 1);
 INSERT INTO tb_modulo (title, description, etapa_id) VALUES ('Como participar', 'Venha compartilhar suas ideias!', 1);

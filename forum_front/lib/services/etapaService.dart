@@ -7,7 +7,6 @@ Future<List<Course>> fetchCourse() async {
   final storage = const FlutterSecureStorage();
   final jwt = await storage.read(key: "jwt");
 
-
   final response = await http.get(
     Uri.parse('http://localhost:8081/etapas'),
     headers: {"Authorization": "Bearer $jwt"},
@@ -16,6 +15,23 @@ Future<List<Course>> fetchCourse() async {
   if (response.statusCode == 200) {
     List<dynamic> jsonList = jsonDecode(response.body);
     return jsonList.map((e) => Course.fromJson(e)).toList();
+  } else {
+    throw Exception('Erro ao carregar etapas');
+  }
+}
+
+Future<Course> fetchCourseById(int id) async {
+  final storage = const FlutterSecureStorage();
+  final jwt = await storage.read(key: "jwt");
+
+  final response = await http.get(
+    Uri.parse('http://localhost:8081/etapas/$id'),
+    headers: {"Authorization": "Bearer $jwt"},
+  );
+
+  if (response.statusCode == 200) {
+    dynamic json = jsonDecode(response.body);
+    return Course.fromJson(json);
   } else {
     throw Exception('Erro ao carregar etapas');
   }

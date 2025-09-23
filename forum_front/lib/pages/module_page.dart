@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/module/modules.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
+import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/models/course.dart';
 import 'package:forum_front/models/module.dart';
+import 'package:forum_front/services/etapaService.dart';
 import 'package:forum_front/services/moduleService.dart';
 
 class ModulePage extends StatefulWidget {
@@ -15,11 +20,17 @@ class ModulePage extends StatefulWidget {
 
 class _ModulePageState extends State<ModulePage> {
   late Future<List<Module>> list;
+  Course etapa = Course.vazio();
 
   @override
   void initState() {
     list = fetchModuloByEtapa(widget.etapaId);
+    _handleFetchEtapa();
     super.initState();
+  }
+
+  void _handleFetchEtapa() async {
+    etapa = await fetchCourseById(widget.etapaId);
   }
 
   @override
@@ -33,44 +44,67 @@ class _ModulePageState extends State<ModulePage> {
           child: Image(image: AssetImage("assets/logos/Euron.png")),
         ),
       ),
-
       drawer: AppDrawer(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_sharp),
-          ),
-          Expanded(
-            child: FutureBuilder(
-              future: list,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (snapshot.hasError) {
-                  return Text("Error: ${snapshot.error}");
-                }
-                if (snapshot.hasData) {
-                  final moduleData = snapshot.data!;
-                  return ListView.separated(
-                    itemCount: moduleData.length,
-                    itemBuilder: (context, index) {
-                      return Modules(module: moduleData[index], index: index);
+      body: FutureBuilder(
+        future: list,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text("Error: ${snapshot.error}"));
+          }
+          if (snapshot.hasData) {
+            final moduleData = snapshot.data!;
+            return ListView(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
                     },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: 4);
-                    },
-                  );
-                }
-                return Text("Sucks");
-              },
-            ),
-          ),
-        ],
+                    icon: Icon(Icons.arrow_back_sharp),
+                  ),
+                ),
+
+                Container(
+                  width: double.infinity,
+                  height: 280,
+                  color: AppColors.blue_eurofarma,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 16),
+                      Text("${etapa.tema}"),
+                      const SizedBox(height: 4),
+                      Text(
+                        "${etapa.titulo}",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.blue_eurofarma,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text("${etapa.descricao}."),
+                      const SizedBox(height: 48),
+                      Text("CONTEÚDO", style: TextStyle(fontSize: 16)),
+                    ],
+                  ),
+                ),
+                for (int index = 0; index < moduleData.length; index++) ...[
+                  Modules(module: moduleData[index], index: index),
+                  const SizedBox(height: 4),
+                ],
+              ],
+            );
+          }
+          return Center(child: Text("No data found."));
+        },
       ),
     );
   }
