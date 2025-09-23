@@ -27,7 +27,6 @@ public class UsuarioService {
         if (!request.senha().equalsIgnoreCase(usuario.getSenha())){
             throw new RuntimeException("yes");
         }
-
         return new ResponseUsuarioDTO(usuario);
     }
 

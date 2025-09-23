@@ -18,6 +18,7 @@ public class Capitulo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
+    @Column(name = "body", length = 2000)
     private String body;
     @Column(name = "url_video")
     private String videoURL;

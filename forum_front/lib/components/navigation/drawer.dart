@@ -13,10 +13,8 @@ class AppDrawer extends StatelessWidget {
 
   static final allListItens = [
     ListItens(icon: Icons.person, text: "Perfil", url: "/perfil" ),
-    ListItens(icon: Icons.map, text: "Projetos", url: "/"),
-    ListItens(icon: Icons.star, text: "Favoritos", url: "/"),
-    ListItens(icon: Icons.leaderboard, text: "Desafios",url: "/"),
-    ListItens(icon: Icons.adb_rounded, text: "Passe",url: "/"),
+    ListItens(icon: Icons.assessment, text: "Boards", url: "/boards"),
+    ListItens(icon: Icons.checklist, text: "Desafios",url: "/challenge"),
     ListItens(icon: Icons.settings, text: "Configurações", url: "/"),
     ListItens(icon: Icons.exit_to_app, text: "Sair", url: "/login"),
   ];

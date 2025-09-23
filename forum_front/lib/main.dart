@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
         "/perfil": (context) => LayoutPage(index: 4),
-        "/challenge": (context) => LayoutPage(index: 2)
+        "/challenge": (context) => LayoutPage(index: 2),
+        "/boards": (context) => LayoutPage(index: 1,)
       },
       onGenerateRoute: (rt) {
         if (rt.name == "/modulos") {
