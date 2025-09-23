@@ -17,12 +17,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class ResponsePerfilDTO {
     private String username;
-    private String email;
     private Set<Etapa> etapas;
     private Set<Insignea> insigneas;
 
     public ResponsePerfilDTO(Usuario usuario) {
-        setEmail(usuario.getEmail());
         setInsigneas(usuario.getInsigneas());
         setUsername(usuario.getUsername());
         Set<Insignea> insignea = usuario.getInsigneas();

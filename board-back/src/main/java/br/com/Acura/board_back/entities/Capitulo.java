@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_capitulo")
@@ -27,6 +28,9 @@ public class Capitulo {
 
     @OneToMany(mappedBy = "capitulo")
     private List<ProgressoUsuario> progressoUsuarios;
+
+    @OneToMany(mappedBy = "capitulo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Perguntas> perguntas = new ArrayList<>();
 
 
 }

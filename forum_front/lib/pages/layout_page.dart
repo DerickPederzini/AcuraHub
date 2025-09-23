@@ -63,20 +63,20 @@ class _HomePageState extends State<LayoutPage> {
         unselectedItemColor: Colors.white70,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 24),
-            label: "Home",
+            icon: Icon(Icons.newspaper, size: 24),
+            label: "Notícias",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.map, size: 24),
-            label: "Projects",
+            icon: Icon(Icons.assessment, size: 24),
+            label: "Boards",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.create, size: 24),
-            label: "Create",
+            icon: Icon(Icons.checklist, size: 24),
+            label: "Desafios",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notification_add, size: 24),
-            label: "Notifications",
+            label: "Notificação",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, size: 24),

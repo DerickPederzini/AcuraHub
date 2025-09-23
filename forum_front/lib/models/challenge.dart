@@ -1,5 +1,4 @@
 class Challenge {
-
   int id;
   String urlImagem;
   String title;
