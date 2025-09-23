@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/courses/course_card.dart';
-import 'package:forum_front/models/course.dart';
 import 'package:forum_front/services/etapaService.dart';
 
 class CoursePage extends StatelessWidget {

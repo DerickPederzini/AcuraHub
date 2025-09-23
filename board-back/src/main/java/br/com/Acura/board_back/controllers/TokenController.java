@@ -25,34 +25,37 @@ public class TokenController {
     private UsuarioService usuarioService;
     @Autowired
     private RegistroService registroService;
-//    @Autowired
-//    private JwtEncoder jwtEncoder;
+    @Autowired
+    private JwtEncoder jwtEncoder;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(LoginRequest request) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
         var usuario = usuarioService.findByEmailAndSenha(request);
 
-        Long expira = 1000L;
+        long expira = 3600;
 
         var claims = JwtClaimsSet.builder()
                 .issuer("EurONBoarding")
                 .subject(usuario.cpf())
                 .expiresAt(Instant.now().plusSeconds(expira))
                 .issuedAt(Instant.now())
+                .claim("id", usuario.id())
+                .claim("username", usuario.username())
+                .claim("email", usuario.email())
                 .build();
 
-//        String jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-        String jwtValue = "";
-         return ResponseEntity.ok(new LoginResponse(jwtValue, expira));
+        String jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        return ResponseEntity.ok(new LoginResponse(jwtValue, expira));
     }
 
     @PostMapping("/registrar")
     public ResponseEntity<String> createUsuario(@Valid @RequestBody RegisterRequest request) {
         try {
             registroService.criar(request);
-            return ResponseEntity.ok("Usuário Criado");
+
+            return ResponseEntity.ok("Você foi cadastrado!");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().build();
         }
     }
 

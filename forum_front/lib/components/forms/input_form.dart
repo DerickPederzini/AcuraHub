@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class InputForm extends StatefulWidget {
   final String placeholder;
   final IconData iconPlace;
+  final ValueChanged<String>? onChanged;
 
   const InputForm({
     super.key,
     required this.placeholder,
     required this.iconPlace,
+    required this.onChanged
   });
 
   @override
@@ -22,6 +24,7 @@ class _InputFormState extends State<InputForm> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.onChanged,
       style: const TextStyle(color: Colors.white),
       obscureText: widget.placeholder == "Senha" ? visibility_password : false,
       decoration: InputDecoration(

@@ -14,11 +14,11 @@ public class ProgressoUsuario {
     private ProgressoUsuarioIds id;
     @ManyToOne
     @MapsId("usuarioId")
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
     @ManyToOne
     @MapsId("capituloId")
-    @JoinColumn(name = "capitulo_id")
+    @JoinColumn(name = "id_capitulo")
     private Capitulo capitulo;
     private String status;
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/helpers/capitulo_page_args.dart';
+import 'package:forum_front/pages/capitulo_page.dart';
 import 'package:forum_front/pages/layout_page.dart';
 import 'package:forum_front/pages/login_page.dart';
 import 'package:forum_front/pages/module_page.dart';
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
         "/perfil": (context) => LayoutPage(index: 4),
+        "/challenge": (context) => LayoutPage(index: 2),
+        "/boards": (context) => LayoutPage(index: 1,)
       },
       onGenerateRoute: (rt) {
         if (rt.name == "/modulos") {
@@ -36,6 +40,14 @@ class MyApp extends StatelessWidget {
               return ModulePage(etapaId: etapaId);
             },
           );
+        }
+        if (rt.name == "/capitulos") {
+          print("jhsuida");
+          final args = rt.arguments as CapituloPageArgs;
+
+          return MaterialPageRoute(builder: (context) {
+            return CapituloPage(etapaId: args.etapaId, moduloId: args.moduloId);
+          });
         }
         return null;
       },

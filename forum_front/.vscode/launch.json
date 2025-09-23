@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter (lib\\models\\capitulo.dart)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib\\models\\capitulo.dart"
+        }
+    ]
+}
