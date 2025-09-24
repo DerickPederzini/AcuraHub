@@ -33,7 +33,7 @@ class _ModulesState extends State<Modules> {
             children: [
               Expanded(
                 child: SizedBox(
-                  height: 2,
+                  height: 4,
                   child: LinearProgressIndicator(
                     // value: widget.course.progress?.toDouble(),
                     value: 73,
@@ -59,7 +59,7 @@ class _ModulesState extends State<Modules> {
           SizedBox(height: 24),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-              minimumSize: Size(double.infinity, 32),
+              minimumSize: Size(double.infinity, 48),
             ),
             onPressed: () {
               Navigator.pushNamed(
@@ -78,7 +78,7 @@ class _ModulesState extends State<Modules> {
           Container(
             decoration: BoxDecoration(
               border: Border(
-                bottom: BorderSide(color: AppColors.text_create_page, width: 3),
+                bottom: BorderSide(color: AppColors.text_create_page, width: 2),
               ),
             ),
           ),

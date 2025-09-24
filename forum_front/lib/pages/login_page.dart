@@ -43,7 +43,7 @@ class _LoginFormState extends State<LoginForm> {
   String senha = "";
   bool isLoading = false;
 
-    Future<void> handleLogin(BuildContext context) async {
+  Future<void> handleLogin(BuildContext context) async {
     try {
       setState(() {
         isLoading = true;
@@ -54,6 +54,12 @@ class _LoginFormState extends State<LoginForm> {
         Navigator.pushReplacementNamed(context, "/");
       }
     } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Email ou Senha incorretos.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
       throw Exception(e);
     } finally {
       setState(() {
@@ -61,7 +67,6 @@ class _LoginFormState extends State<LoginForm> {
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {

@@ -31,6 +31,11 @@ public class ModuloController {
         return ResponseEntity.ok(moduloService.getByCourseId(id));
     }
 
+    @GetMapping("/etapa/{idEtapa}/user/{idUser}")
+    public ResponseEntity<List<ModuleDTOResponse>> getAllModulosWithUser(@PathVariable Long idEtapa, @PathVariable Long idUser) {
+        return ResponseEntity.ok(moduloService.getByCourseId(idEtapa, idUser));
+    }
+
 
 //    @PostMapping
 //    public ResponseEntity<EtapaDTOResponse> createEtapa(@RequestBody @Valid EtapaDTORequest request) {

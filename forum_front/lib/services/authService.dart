@@ -15,8 +15,8 @@ Future<String?> login(String email, String senha) async {
   if (response.statusCode == 200) {
     final usuario = jsonDecode(response.body);
 
+
     final storage = FlutterSecureStorage();
-    print(usuario["accessToken"]);
     await storage.write(key: "jwt", value: usuario["accessToken"]);
 
     return usuario["acessToken"];

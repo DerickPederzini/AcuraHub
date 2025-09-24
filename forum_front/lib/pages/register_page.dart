@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/forms/form_button_fill.dart';
 import 'package:forum_front/components/forms/form_button_outlined.dart';
@@ -51,6 +53,26 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   Future<void> handleRegister(BuildContext context) async {
+    if (senha.isEmpty && email.isEmpty && cpf.isEmpty && username.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Preencha todos os campos.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+      return;
+    }
+
+    if (senha.length < 8) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Senha deve ter ao menos 8 caracteres.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+      return;
+    }
+
     try {
       setState(() {
         isLoading = true;
@@ -62,6 +84,13 @@ class _RegisterFormState extends State<RegisterForm> {
         Navigator.pushReplacementNamed(context, "/");
       }
     } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Cadastro inválido.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+
       throw Exception(e);
     } finally {
       setState(() {

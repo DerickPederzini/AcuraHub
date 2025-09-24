@@ -31,6 +31,19 @@ public class CapituloController {
         return ResponseEntity.ok(capituloService.getAllCapitulosPorModulo(id));
     }
 
+    @PostMapping("/progresso/user/{idCapitulo}/{idUser}")
+    public ResponseEntity<Void> finishCapitulo(@PathVariable Long idCapitulo, @PathVariable Long idUser) {
+        capituloService.finishCapitulo(idCapitulo, idUser);
+
+        URI uri = ServletUriComponentsBuilder.
+                fromCurrentRequestUri()
+                .path("/{id}")
+                .build()
+                .toUri();
+        return ResponseEntity.created(uri).build();
+
+    }
+
 //    @PostMapping
 //    public ResponseEntity<EtapaDTOResponse> createEtapa(@RequestBody @Valid EtapaDTORequest request) {
 //        EtapaDTOResponse response = capituloService.create(request);

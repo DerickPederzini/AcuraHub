@@ -24,7 +24,7 @@ class _ModulePageState extends State<ModulePage> {
 
   @override
   void initState() {
-    list = fetchModuloByEtapa(widget.etapaId);
+    list = fetchModuloByEtapaAndUser(widget.etapaId);
     _handleFetchEtapa();
     super.initState();
   }
