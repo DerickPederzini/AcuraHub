@@ -28,7 +28,15 @@ class _CapituloPageState extends State<CapituloPage> {
   }
 
   void _concluirCapitulo() async {
+    List<Capitulo> li = await fetchCapituloByModulo(widget.moduloId);
+
+    List<int?> it = [];
+
+    for (var elem in li) {
+      it.add(elem.id);
+    }
     
+    finishCapitulo(it);
   }
 
   @override
@@ -68,10 +76,23 @@ class _CapituloPageState extends State<CapituloPage> {
                   return ListView.separated(
                     itemCount: capituloData.length,
                     itemBuilder: (context, index) {
-                      return Capitulos(
-                        capitulo: capituloData[index],
-                        etapaId: widget.etapaId,
-                        moduloId: widget.moduloId,
+                      return Column(
+                        children: [
+                          Capitulos(
+                            capitulo: capituloData[index],
+                            etapaId: widget.etapaId,
+                            moduloId: widget.moduloId,
+                          ),
+                          OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              minimumSize: Size(double.infinity, 48),
+                            ),
+                            onPressed: () {
+                              _concluirCapitulo();
+                            },
+                            child: Text("Concluir"),
+                          ),
+                        ],
                       );
                     },
                     separatorBuilder: (context, index) {

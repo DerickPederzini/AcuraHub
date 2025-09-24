@@ -3,6 +3,7 @@ package br.com.Acura.board_back.services;
 
 import br.com.Acura.board_back.data.dtos.CapituloDTOResponse;
 import br.com.Acura.board_back.entities.Capitulo;
+import br.com.Acura.board_back.entities.StatusCapitulo;
 import br.com.Acura.board_back.repositories.ICapituloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,11 @@ public class CapituloService {
     public List<CapituloDTOResponse> getAll() {
         List<Capitulo> capitulos = capituloRepository.findAll();
         return capitulos.stream().map(CapituloDTOResponse::new).toList();
+    }
+
+    @Transactional
+    public void finishCapitulo(Long idCapitulo, Long idUser) {
+        capituloRepository.terminaCapituloDoUsuario(idCapitulo, idUser, StatusCapitulo.TERMINADO.name());
+        System.out.println("Horray");
     }
 }

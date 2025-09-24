@@ -1,13 +1,20 @@
 package br.com.Acura.board_back.data.dtos;
 
-import br.com.Acura.board_back.entities.Etapa;
 import br.com.Acura.board_back.entities.Modulo;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class ModuleDTOResponse {
     Long id;
     String title;
     String description;
-    Double progresso;
+    Double progresso = 0.0;
 
     public ModuleDTOResponse(Modulo modulo) {
         this.id = modulo.getId();

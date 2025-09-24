@@ -28,13 +28,6 @@ class _CapituloState extends State<Capitulos> {
           widget.capitulo.urlVideo != ""
               ? Text("${widget.capitulo.urlVideo}")
               : Text(""),
-          OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              minimumSize: Size(double.infinity, 48),
-            ),
-            onPressed: () {},
-            child: Text("Concluir"),
-          ),
         ],
       ),
     );
