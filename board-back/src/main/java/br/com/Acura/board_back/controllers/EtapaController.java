@@ -27,7 +27,8 @@ public class EtapaController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<List<EtapaDTOResponse>> getAllEtapas(@PathVariable Long id) {
-        return ResponseEntity.ok(etapaService.getAllEtapasByUsuario(id));
+        List<EtapaDTOResponse> etapas = etapaService.getAllEtapasByUsuario(id);
+        return ResponseEntity.ok(etapas);
     }
 
 
