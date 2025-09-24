@@ -25,6 +25,9 @@ public class ModuloService {
 
     public List<ModuleDTOResponse> getByCourseId(Long id) {
         List<Modulo> modulo = moduloRepository.findAllByEtapaId(id);
+
+
+
         return modulo.stream().map(ModuleDTOResponse::new).toList();
 
     }

@@ -27,6 +27,10 @@ class _CapituloPageState extends State<CapituloPage> {
     super.initState();
   }
 
+  void _concluirCapitulo() async {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

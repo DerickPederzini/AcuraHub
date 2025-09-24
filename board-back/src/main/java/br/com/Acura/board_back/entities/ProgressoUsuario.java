@@ -20,6 +20,7 @@ public class ProgressoUsuario {
     @MapsId("capituloId")
     @JoinColumn(name = "id_capitulo")
     private Capitulo capitulo;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusCapitulo status;
 
 }

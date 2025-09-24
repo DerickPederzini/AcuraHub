@@ -22,7 +22,7 @@ public class Modulo {
     @JoinColumn(name = "etapa_id")
     private Etapa etapa;
 
-    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Capitulo> capitulos;
 
 }
