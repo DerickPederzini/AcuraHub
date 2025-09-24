@@ -22,6 +22,8 @@ public class Insignea {
 
     private String urlInsigea;
     private String nome;
+    private String descricao;
+
 
     @OneToOne
     @JoinColumn(name = "etapa_id")

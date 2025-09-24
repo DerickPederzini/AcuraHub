@@ -55,5 +55,14 @@ INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'der
 INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'nick@g', 'Nicolas', '1234');
 INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'jose@g', 'Edu', '1234');
 
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Desafio 1', 'Tororororo XD';)
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Seja Bem-vindo(a)!', 'Este é o seu primeiro acesso. Estamos muito felizes em ter você começando esta jornada conosco.');
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Mestre das Perguntas', 'Já fez 5 perguntas ao nosso chatbot. Você sabe exatamente como encontrar as respostas que precisa.');
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Amigo do Assistente', 'Você interagiu 10 vezes com o chatbot. Ele já te considera um(a) grande parceiro(a) de conversa.');
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Sempre Presente', 'Uma semana inteira de acessos! Seu comprometimento com o desenvolvimento é inspirador.');
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Trilha Finalizada', 'Você completou uma trilha de aprendizado inteira. Sinta orgulho da sua dedicação e do conhecimento adquirido.');
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Certificação de Onboarding', 'Missão completa! Você finalizou todo o conteúdo de integração e está oficialmente pronto(a) para decolar conosco.');
+INSERT INTO tb_insignia (nome, descricao) VALUES ('Curiosidade em Ação', 'Você explorou um conteúdo opcional. Sua iniciativa em aprender mais é um grande diferencial.');
+
 
 
