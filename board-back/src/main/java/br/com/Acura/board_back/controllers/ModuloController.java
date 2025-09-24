@@ -33,7 +33,8 @@ public class ModuloController {
 
     @GetMapping("/etapa/{idEtapa}/user/{idUser}")
     public ResponseEntity<List<ModuleDTOResponse>> getAllModulosWithUser(@PathVariable Long idEtapa, @PathVariable Long idUser) {
-        return ResponseEntity.ok(moduloService.getByCourseId(idEtapa, idUser));
+        List<ModuleDTOResponse> dto = moduloService.getByCourseId(idEtapa, idUser);
+        return ResponseEntity.ok(dto);
     }
 
 

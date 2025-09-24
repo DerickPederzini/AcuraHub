@@ -25,13 +25,20 @@ public class EtapaController {
         return ResponseEntity.ok(etapaService.getAll());
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<EtapaDTOResponse>> getAllEtapas(@PathVariable Long id) {
+        return ResponseEntity.ok(etapaService.getAllEtapasByUsuario(id));
+    }
+
+
+
     @PostMapping
     public ResponseEntity<EtapaDTOResponse> createEtapa(@RequestBody @Valid EtapaDTORequest request) {
         EtapaDTOResponse response = etapaService.create(request);
         URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequestUri()
                 .path("/{id}")
-                .buildAndExpand(response.id())
+                .buildAndExpand(response)
                 .toUri();
         return ResponseEntity.created(uri).body(response);
 

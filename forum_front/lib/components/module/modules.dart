@@ -35,8 +35,7 @@ class _ModulesState extends State<Modules> {
                 child: SizedBox(
                   height: 4,
                   child: LinearProgressIndicator(
-                    // value: widget.course.progress?.toDouble(),
-                    value: 73,
+                  value: (widget.module.completedCapitulos! / widget.module.totalCapitulos!) * 100,
                     backgroundColor: Colors.grey[300],
                     valueColor: const AlwaysStoppedAnimation<Color>(
                       Colors.blue,
@@ -47,7 +46,7 @@ class _ModulesState extends State<Modules> {
               SizedBox(width: 4),
               Text(
                 // '${widget.course.progress}%',
-                '73%',
+                '${widget.module.completedCapitulos! / widget.module.totalCapitulos! * 100}%',
                 style: const TextStyle(
                   color: AppColors.grey_70,
                   fontWeight: FontWeight.bold,

@@ -13,7 +13,6 @@ Future<List<Capitulo>> fetchCapituloByModulo(int id) async {
     headers: {"Authorization": "Bearer $jwt"},
   );
 
-
   if (response.statusCode == 200) {
     List<dynamic> jsonList = jsonDecode(response.body);
     return jsonList.map((e) => Capitulo.fromJson(e)).toList();
@@ -25,31 +24,22 @@ Future<List<Capitulo>> fetchCapituloByModulo(int id) async {
 Future<void> finishCapitulo(List<int?> capitulos) async {
   final storage = const FlutterSecureStorage();
   String? jwt = await storage.read(key: "jwt");
-  var vari;
-  var statusCode;
 
   Map<String?, dynamic> decodedToken = JwtDecoder.decode(jwt!);
 
   int idUser = decodedToken["id"] as int;
 
-  print("NO IDEA");
-
   for (int i = 0; i < capitulos.length; i++) {
-    print("before");
     final response = await http.post(
-      Uri.parse('http://localhost:8081/capitulos/progresso/user/${capitulos[i]}/$idUser'),
+      Uri.parse(
+        'http://localhost:8081/capitulos/progresso/user/${capitulos[i]}/$idUser',
+      ),
       headers: {"Authorization": "Bearer $jwt"},
     );
-    print("After");
-    vari = response.body;
-    statusCode = vari.statusCode;
-  }
-
-  print(vari);
-
-  if (statusCode == 201) {
-    print("Nice dms");
-  } else {
-    throw Exception('Erro ao carregar capitulos');
+    if (response.statusCode == 201) {
+      print("Nice dms");
+    } else {
+      throw Exception('Erro ao carregar capitulos');
+    }
   }
 }

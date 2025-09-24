@@ -14,7 +14,8 @@ public class ModuleDTOResponse {
     Long id;
     String title;
     String description;
-    Double progresso = 0.0;
+    private int totalCapitulos;
+    private int completedCapitulos;
 
     public ModuleDTOResponse(Modulo modulo) {
         this.id = modulo.getId();
@@ -23,11 +24,11 @@ public class ModuleDTOResponse {
     }
 
 
-    public ModuleDTOResponse(Modulo modulo, double progresso) {
+    public ModuleDTOResponse(Modulo modulo, long completedCount) {
         this.id = modulo.getId();
         this.title = modulo.getTitle();
         this.description = modulo.getDescription();
-        this.progresso = progresso;
+        this.totalCapitulos = modulo.getCapitulos().size();
+        this.completedCapitulos = (int) completedCount;
     }
-
 }

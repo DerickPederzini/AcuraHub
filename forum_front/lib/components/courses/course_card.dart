@@ -72,7 +72,7 @@ class _CourseCardState extends State<CourseCard> {
                           height: 2,
                           child: LinearProgressIndicator(
                             // value: widget.course.progress?.toDouble(),
-                            value: 73,
+                            value: (widget.course.capitulosCompletos! / widget.course.totalCapitulos! / widget.course.totalModulos!) * 100,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
                               Colors.blue,
@@ -83,7 +83,7 @@ class _CourseCardState extends State<CourseCard> {
                       SizedBox(width: 4),
                       Text(
                         // '${widget.course.progress}%',
-                        '73%',
+                        '${(widget.course.capitulosCompletos! / widget.course.totalCapitulos! / widget.course.totalModulos!) * 100}%',
                         style: const TextStyle(
                           color: AppColors.grey_70,
                           fontWeight: FontWeight.bold,
