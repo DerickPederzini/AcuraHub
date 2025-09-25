@@ -1,8 +1,8 @@
-
 class CapituloPageArgs {
-  final int moduloId;
-  final int etapaId;
+  int etapaId;
+  int moduloId;
 
   CapituloPageArgs({required this.etapaId, required this.moduloId});
-
+  
 }
+

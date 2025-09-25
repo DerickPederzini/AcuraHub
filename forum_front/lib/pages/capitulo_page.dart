@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:forum_front/components/capitulo/capitulos.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
 import 'package:forum_front/models/capitulo.dart';
 import 'package:forum_front/services/capituloService.dart';
+import 'package:video_player/video_player.dart';
 
 class CapituloPage extends StatefulWidget {
   final int etapaId;
@@ -19,24 +19,38 @@ class CapituloPage extends StatefulWidget {
 }
 
 class _CapituloPageState extends State<CapituloPage> {
-  late Future<List<Capitulo>> capitulos;
+  late Future<List<Capitulo>> _capitulos;
+  final Map<int, VideoPlayerController> _videoControllers = {};
 
   @override
   void initState() {
-    capitulos = fetchCapituloByModulo(widget.moduloId);
     super.initState();
+    _capitulos = fetchCapituloByModulo(widget.moduloId);
   }
 
-  void _concluirCapitulo() async {
-    List<Capitulo> li = await fetchCapituloByModulo(widget.moduloId);
-
-    List<int?> it = [];
-
-    for (var elem in li) {
-      it.add(elem.id);
+  @override
+  void dispose() {
+    for (var controller in _videoControllers.values) {
+      controller.dispose();
     }
-    
-    finishCapitulo(it);
+    super.dispose();
+  }
+
+  void _initVideoController(Capitulo capitulo) {
+    if (capitulo.urlVideo != null &&
+        !_videoControllers.containsKey(capitulo.id)) {
+      final controller = VideoPlayerController.network(capitulo.urlVideo!)
+        ..initialize().then((_) => setState(() {}));
+      _videoControllers[capitulo.id!] = controller;
+    }
+  }
+
+  void _concluirModulo(List<Capitulo> capitulos) {
+    final ids = capitulos.map((c) => c.id).toList();
+    finishCapitulo(ids);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Módulo concluído!')));
   }
 
   @override
@@ -44,67 +58,90 @@ class _CapituloPageState extends State<CapituloPage> {
     return Scaffold(
       appBar: AppBar(
         title: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/");
-          },
-          child: Image(image: AssetImage("assets/logos/Euron.png")),
+          onPressed: () => Navigator.pushNamed(context, "/"),
+          child: Image.asset("assets/logos/Euron.png", height: 40),
         ),
       ),
-
       drawer: AppDrawer(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_sharp),
-          ),
-          Expanded(
-            child: FutureBuilder(
-              future: capitulos,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (snapshot.hasError) {
-                  return Center(child: Text("Deru erro"));
-                }
-                if (snapshot.hasData) {
-                  final capituloData = snapshot.data!;
-                  return ListView.separated(
-                    itemCount: capituloData.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Capitulos(
-                            capitulo: capituloData[index],
-                            etapaId: widget.etapaId,
-                            moduloId: widget.moduloId,
-                          ),
-                          OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              minimumSize: Size(double.infinity, 48),
-                            ),
-                            onPressed: () {
-                              _concluirCapitulo();
-                            },
-                            child: Text("Concluir"),
-                          ),
-                        ],
-                      );
+      body: FutureBuilder<List<Capitulo>>(
+        future: _capitulos,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return const Center(child: Text("Ocorreu um erro"));
+          }
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text("Nenhum capítulo disponível"));
+          }
+
+          final capitulos = snapshot.data!;
+
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (var capitulo in capitulos) ...[
+                  Text(
+                    capitulo.titulo?.toUpperCase() ?? "",
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.pinkAccent,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+
+                  if (capitulo.urlImagem != null)
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(capitulo.urlImagem!),
+                    ),
+                  if (capitulo.urlImagem != null) const SizedBox(height: 12),
+
+                  if (capitulo.urlVideo != null)
+                    Builder(
+                      builder: (_) {
+                        _initVideoController(capitulo);
+                        final controller = _videoControllers[capitulo.id!]!;
+                        if (!controller.value.isInitialized) {
+                          return const SizedBox(
+                            height: 200,
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
+                        return AspectRatio(
+                          aspectRatio: controller.value.aspectRatio,
+                          child: VideoPlayer(controller),
+                        );
+                      },
+                    ),
+                  if (capitulo.urlVideo != null) const SizedBox(height: 12),
+
+                  Text(
+                    capitulo.body ?? "",
+                    style: const TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                  const SizedBox(height: 24),
+                ],
+
+                // Single Concluir button at the bottom
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      _concluirModulo(capitulos),
+                      Navigator.pushNamed(context, "/"),
                     },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: 16);
-                    },
-                  );
-                }
-                return Text("sucks");
-              },
+                    child: const Text("Concluir Módulo"),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

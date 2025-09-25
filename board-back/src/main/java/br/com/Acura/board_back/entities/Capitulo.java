@@ -22,6 +22,8 @@ public class Capitulo {
     private String body;
     @Column(name = "url_video")
     private String videoURL;
+    @Column(name = "url_imagem")
+    private String urlImagem;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modulo_id")
