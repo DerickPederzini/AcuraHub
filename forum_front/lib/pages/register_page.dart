@@ -46,6 +46,13 @@ class _RegisterFormState extends State<RegisterForm> {
   String senha = "";
   String cpf = "";
   bool isLoading = false;
+  List<String> atuacoes = [
+    'SELECIONE UMA OPÇÃO',
+    'DESENVOLVEDOR',
+    'MARKETING',
+    'GESTOR',
+  ];
+  String? isSelected = "";
 
   @override
   void initState() {
@@ -57,6 +64,16 @@ class _RegisterFormState extends State<RegisterForm> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text('Preencha todos os campos.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+      return;
+    }
+
+    if (isSelected == "SELECIONE UMA OPÇÃO" || isSelected == "") {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Selecione um campo de atuação.'),
           action: SnackBarAction(label: 'Esconder', onPressed: () {}),
         ),
       );
@@ -77,7 +94,7 @@ class _RegisterFormState extends State<RegisterForm> {
       setState(() {
         isLoading = true;
       });
-      await registerUser(email, senha, username, cpf);
+      await registerUser(email, senha, username, cpf, isSelected!);
       await login(email, senha);
 
       if (mounted) {
@@ -143,6 +160,24 @@ class _RegisterFormState extends State<RegisterForm> {
               }),
             },
           ),
+          SizedBox(height: 16),
+          DropdownMenu<String>(
+            initialSelection: atuacoes[0],
+            dropdownMenuEntries: atuacoes
+                .map(
+                  (atuacao) => DropdownMenuEntry<String>(
+                    value: atuacao,
+                    label: atuacao.toString(),
+                  ),
+                )
+                .toList(),
+            onSelected: (String? newValue) {
+              setState(() {
+                isSelected = newValue;
+              });
+            },
+          ),
+
           SizedBox(height: 64),
           FormButtonFill(
             buttonText: "Criar",

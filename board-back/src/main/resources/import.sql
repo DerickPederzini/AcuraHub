@@ -50,9 +50,9 @@ INSERT INTO tb_capitulo (titulo, url_imagem ,body, url_video, modulo_id) VALUES 
 INSERT INTO tb_capitulo (titulo, url_imagem ,body, url_video, modulo_id) VALUES ('Introdução pt1', '','2',  'JDIOASIJDSAIOL', 14);
 INSERT INTO tb_capitulo (titulo, url_imagem ,body, url_video, modulo_id) VALUES ('Introdução pt1', '','2',  'JDIOASIJDSAIOL', 15);
 
-INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'deri@g', 'Derick', '1234');
-INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'nick@g', 'Nicolas', '1234');
-INSERT INTO tb_usuario (cpf, email, username, senha) VALUES ('52702190855', 'jose@g', 'Edu', '1234');
+INSERT INTO tb_usuario (cpf, atuacao, email, username, senha) VALUES ('52702190855', 'DESENVOLVEDOR', 'deri@g', 'Derick', '1234');
+INSERT INTO tb_usuario (cpf, atuacao, email, username, senha) VALUES ('52702190855', 'MARKETING', 'nick@g', 'Nicolas', '1234');
+INSERT INTO tb_usuario (cpf, atuacao, email, username, senha) VALUES ('52702190855', 'GESTOR', 'jose@g', 'Edu', '1234');
 
 INSERT INTO tb_progresso_usuario (id_usuario, id_capitulo, status) VALUES (1, 1, 'TERMINADO');
 INSERT INTO tb_progresso_usuario (id_usuario, id_capitulo, status) VALUES (1, 2, 'TERMINADO');

@@ -42,6 +42,7 @@ public class TokenController {
                 .claim("id", usuario.id())
                 .claim("username", usuario.username())
                 .claim("email", usuario.email())
+                .claim("atuacao", usuario.atuacao())
                 .build();
 
         String jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

@@ -25,6 +25,9 @@ public class Usuario {
     private String cpf;
     private String email;
     private String senha;
+    @Column(name = "atuacao")
+    @Enumerated(EnumType.STRING)
+    private Atuacao atuacao;
 
     @OneToMany(mappedBy = "usuario")
     private List<ProgressoUsuario> progressoUsuarios;

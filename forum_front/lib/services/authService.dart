@@ -29,6 +29,7 @@ Future<String> registerUser(
   String senha,
   String username,
   String cpf,
+  String isSelected
 ) async {
   final response = await http.post(
     Uri.parse("$baseUrl/user/auth/registrar"),
@@ -38,6 +39,7 @@ Future<String> registerUser(
       "senha": senha,
       "username": username,
       "cpf": cpf,
+      "atuacao": isSelected 
     }),
   );
 

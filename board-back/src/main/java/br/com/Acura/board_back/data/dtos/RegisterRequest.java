@@ -9,5 +9,7 @@ public record RegisterRequest(
         String username,
         String senha,
         @CPF
-        String cpf) {
+        String cpf,
+        String atuacao
+) {
 }
