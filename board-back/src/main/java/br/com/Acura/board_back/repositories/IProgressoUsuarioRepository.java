@@ -1,12 +1,13 @@
 package br.com.Acura.board_back.repositories;
 
 import br.com.Acura.board_back.entities.ProgressoUsuario;
+import br.com.Acura.board_back.entities.StatusCapitulo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IProgressoUsuarioRepository extends JpaRepository<ProgressoUsuario, Long> {
 
@@ -18,5 +19,13 @@ public interface IProgressoUsuarioRepository extends JpaRepository<ProgressoUsua
 
     @Query("SELECT p FROM ProgressoUsuario p JOIN FETCH p.capitulo WHERE p.usuario.id = :usuarioId")
     List<ProgressoUsuario> findAllByUsuarioId(@Param("usuarioId") Long usuarioId);
+
+    @Query("SELECT CASE WHEN COUNT(p) > 0 THEN true ELSE false END FROM ProgressoUsuario p WHERE p.id.usuarioId = :usuarioId AND p.id.capituloId = :capituloId")
+    boolean existsByUsuarioIdAndCapituloId(@Param("usuarioId") Long usuarioId, @Param("capituloId") Long capituloId);
+
+    @Modifying
+    @Query("UPDATE ProgressoUsuario p SET p.status = :status WHERE p.id.usuarioId = :usuarioId AND p.id.capituloId = :capituloId")
+    void updateStatus(@Param("usuarioId") Long usuarioId, @Param("capituloId") Long capituloId, @Param("status") StatusCapitulo status);
+
 
 }

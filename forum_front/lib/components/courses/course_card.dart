@@ -13,6 +13,24 @@ class CourseCard extends StatefulWidget {
 
 class _CourseCardState extends State<CourseCard> {
   bool fazendo = true;
+  late int totalCapitulos;
+  late int capitulosCompletos;
+  late double progress;
+
+  @override
+  void initState() {
+    super.initState();
+
+    totalCapitulos = widget.course.totalCapitulos ?? 0;
+    capitulosCompletos = widget.course.capitulosCompletos ?? 0;
+
+    progress = 0.0;
+    if (widget.course.totalCapitulos != null &&
+        widget.course.totalCapitulos! > 0) {
+      progress =
+          widget.course.capitulosCompletos! / widget.course.totalCapitulos!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +90,7 @@ class _CourseCardState extends State<CourseCard> {
                           height: 2,
                           child: LinearProgressIndicator(
                             // value: widget.course.progress?.toDouble(),
-                            value: (widget.course.capitulosCompletos! / widget.course.totalCapitulos! / widget.course.totalModulos!) * 100,
+                            value: progress,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
                               Colors.blue,
@@ -82,8 +100,7 @@ class _CourseCardState extends State<CourseCard> {
                       ),
                       SizedBox(width: 4),
                       Text(
-                        // '${widget.course.progress}%',
-                        '${(widget.course.capitulosCompletos! / widget.course.totalCapitulos! / widget.course.totalModulos!) * 100}%',
+                        '${(progress * 100).toStringAsFixed(0)}%',
                         style: const TextStyle(
                           color: AppColors.grey_70,
                           fontWeight: FontWeight.bold,

@@ -35,7 +35,7 @@ class _ModulesState extends State<Modules> {
                 child: SizedBox(
                   height: 4,
                   child: LinearProgressIndicator(
-                  value: (widget.module.completedCapitulos! / widget.module.totalCapitulos!) * 100,
+                  value: (widget.module.completedCapitulos! / widget.module.totalCapitulos!),
                     backgroundColor: Colors.grey[300],
                     valueColor: const AlwaysStoppedAnimation<Color>(
                       Colors.blue,

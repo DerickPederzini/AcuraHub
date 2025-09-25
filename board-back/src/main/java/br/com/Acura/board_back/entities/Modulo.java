@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "tb_modulo")
 @AllArgsConstructor
@@ -23,6 +24,6 @@ public class Modulo {
     private Etapa etapa;
 
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Capitulo> capitulos;
+    private Set<Capitulo> capitulos;
 
 }

@@ -11,7 +11,7 @@ import lombok.Setter;
 public class ProgressoUsuario {
 
     @EmbeddedId
-    private ProgressoUsuarioIds id;
+    private ProgressoUsuarioIds id = new ProgressoUsuarioIds();
     @ManyToOne
     @MapsId("usuarioId")
     @JoinColumn(name = "id_usuario")

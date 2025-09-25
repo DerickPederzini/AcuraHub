@@ -2,8 +2,6 @@ package br.com.Acura.board_back.services;
 
 import br.com.Acura.board_back.data.dtos.EtapaDTORequest;
 import br.com.Acura.board_back.data.dtos.EtapaDTOResponse;
-import br.com.Acura.board_back.data.dtos.ModuleDTOResponse;
-import br.com.Acura.board_back.data.dtos.RegisterRequest;
 import br.com.Acura.board_back.entities.*;
 import br.com.Acura.board_back.repositories.IEtapaRepository;
 import br.com.Acura.board_back.repositories.IProgressoUsuarioRepository;
@@ -68,7 +66,7 @@ public class EtapaService {
                    }
                }
            }
-               return new EtapaDTOResponse(etapa, totalCapitulosDaEtapa, capitulosCompletos);
+               return new EtapaDTOResponse(etapa, capitulosCompletos, totalCapitulosDaEtapa);
         }).collect(Collectors.toList());
 
     }

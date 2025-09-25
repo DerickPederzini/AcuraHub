@@ -20,7 +20,7 @@ class CoursePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: FutureBuilder(
-          future: fetchCourse(),
+          future: fetchCourseByUserId(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());

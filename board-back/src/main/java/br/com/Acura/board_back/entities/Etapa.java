@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_etapa")
@@ -25,7 +26,7 @@ public class Etapa {
     private Tipo tema;
 
     @OneToMany(mappedBy = "etapa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Modulo> modulos;
+    private Set<Modulo> modulos;
 
     @OneToOne(mappedBy = "etapa")
     private Insignea insignea;
