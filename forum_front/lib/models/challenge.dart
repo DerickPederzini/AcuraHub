@@ -1,3 +1,4 @@
+
 class Challenge {
   int id;
   String urlImagem;
