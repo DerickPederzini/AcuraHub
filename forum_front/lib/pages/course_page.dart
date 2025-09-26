@@ -7,14 +7,6 @@ class CoursePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List<Course> courses = [
-    //   new Course(
-    //     urlImagem:
-    //         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqZMxEcWy4D_SZCfajwlaTXehy9yWjveFsw&s",
-    //     titulo: "Clic",
-    //     tema: "Inovação",
-    //   ),
-    // ];
 
     return Scaffold(
       body: Padding(
@@ -34,7 +26,7 @@ class CoursePage extends StatelessWidget {
                   return CourseCard(course: coursesYes[index]);
                 },
                 separatorBuilder: (context, index) {
-                  return const SizedBox(height: 16,);
+                  return const SizedBox(height: 32,);
                 },
               );
             }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/constants/app_font.dart';
 import 'package:forum_front/models/course.dart';
 
 class CourseCard extends StatefulWidget {
@@ -38,12 +39,7 @@ class _CourseCardState extends State<CourseCard> {
 
     if (screenWidth < 600) {
       return Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 2,
-            color: const Color.fromARGB(255, 242, 247, 248),
-          ),
-        ),
+        decoration: BoxDecoration(color: const Color.fromARGB(255, 31, 31, 31)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -54,13 +50,18 @@ class _CourseCardState extends State<CourseCard> {
                 children: [
                   Text(
                     widget.course.titulo!,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.blue_claro_2,
+                      fontFamily: AppFont.public_sans,
+                    ),
                   ),
                   Text(
                     widget.course.tema!,
                     style: TextStyle(
                       fontSize: 16,
-                      color: AppColors.text_create_page,
+                      color: AppColors.cinza_claro_1,
                     ),
                   ),
                 ],
@@ -70,6 +71,7 @@ class _CourseCardState extends State<CourseCard> {
               width: double.infinity,
               height: 280,
               decoration: BoxDecoration(
+                border: Border.all(width: 6, color: AppColors.blue_claro_2),
                 borderRadius: BorderRadius.zero,
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -87,12 +89,12 @@ class _CourseCardState extends State<CourseCard> {
                     children: [
                       Expanded(
                         child: SizedBox(
-                          height: 2,
+                          height: 6,
                           child: LinearProgressIndicator(
                             value: progress,
-                            backgroundColor: Colors.grey[300],
+                            backgroundColor: AppColors.cinza_claro_1,
                             valueColor: const AlwaysStoppedAnimation<Color>(
-                              Colors.blue,
+                              AppColors.blue_claro_2,
                             ),
                           ),
                         ),
@@ -103,7 +105,8 @@ class _CourseCardState extends State<CourseCard> {
                         style: const TextStyle(
                           color: AppColors.grey_70,
                           fontWeight: FontWeight.bold,
-                          fontSize: 10,
+                          fontSize: 24,
+                          fontFamily: AppFont.public_sans,
                         ),
                       ),
                     ],
@@ -118,9 +121,9 @@ class _CourseCardState extends State<CourseCard> {
                       );
                     },
                     style: OutlinedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 40),
+                      minimumSize: Size(double.infinity, 64),
                       side: BorderSide(
-                        color: AppColors.blue_eurofarma,
+                        color: AppColors.blue_claro_2,
                         width: 2,
                       ),
                       shape: RoundedRectangleBorder(
@@ -130,9 +133,10 @@ class _CourseCardState extends State<CourseCard> {
                     child: Text(
                       fazendo ? "Continuar" : "Começar",
                       style: TextStyle(
-                        color: AppColors.blue_eurofarma,
-                        fontSize: 16,
+                        color: AppColors.blue_claro_2,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        fontFamily: AppFont.public_sans,
                       ),
                     ),
                   ),
