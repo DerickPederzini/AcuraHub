@@ -1,5 +1,6 @@
 package br.com.Acura.board_back.services;
 
+import br.com.Acura.board_back.data.dtos.InsigneasDTORequest;
 import br.com.Acura.board_back.data.dtos.InsigneasDTOResponse;
 import br.com.Acura.board_back.entities.*;
 import br.com.Acura.board_back.repositories.IInsigneaRepository;
@@ -17,7 +18,6 @@ public class InsigneaService {
 
     @Autowired
     private IInsigneaRepository insigneaRepository;
-
     @Autowired
     private IProgressoUsuarioRepository progressoUsuarioRepository;
 
@@ -25,6 +25,11 @@ public class InsigneaService {
     public List<InsigneasDTOResponse> getAll() {
         List<Insignea> insigneas = insigneaRepository.findAll();
         return insigneas.stream().map(InsigneasDTOResponse::new).toList();
+    }
+
+    @Transactional()
+    public void registerInsigneaForUser(String idUser, String idInsignia) {
+
     }
 
     @Transactional
