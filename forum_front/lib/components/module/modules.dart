@@ -32,8 +32,8 @@ class _ModulesState extends State<Modules> {
       padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 42, 42, 43),
-          borderRadius: BorderRadius.circular(12)
+          color: AppColors.cinza_escuro_3,
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
@@ -41,24 +41,53 @@ class _ModulesState extends State<Modules> {
             children: [
               Row(
                 children: [
-                  Text("${widget.index + 1}. ", style: TextStyle(fontFamily: AppFont.public_sans, fontSize: 18)),
-                  Text("${widget.module.title}", style: TextStyle(fontFamily: AppFont.public_sans, fontSize: 18)),
+                  Text(
+                    "${widget.index + 1}. ",
+                    style: TextStyle(
+                      fontFamily: AppFont.public_sans,
+                      fontSize: 18,
+                    ),
+                  ),
+                  Text(
+                    "${widget.module.title}",
+                    style: TextStyle(
+                      fontFamily: AppFont.public_sans,
+                      fontSize: 18,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 16),
-          
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: SizedBox(
-                      height: 4,
-                      child: LinearProgressIndicator(
-                        value: (progress),
-                        backgroundColor: Colors.grey[300],
-                        valueColor: progress == 1
-                            ? const AlwaysStoppedAnimation<Color>(AppColors.blue_internal)
-                            : const AlwaysStoppedAnimation<Color>(AppColors.blue_claro_1),
+                      height: 12,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                        child: Stack(
+                          children: [
+                            Container(color: Colors.grey[300]),
+                            FractionallySizedBox(
+                              alignment: Alignment.centerLeft,
+                              widthFactor: progress,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.blue_eurofarma,
+                                      AppColors.blue_claro_2,
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -70,15 +99,23 @@ class _ModulesState extends State<Modules> {
                       color: AppColors.grey_70,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
+                      fontFamily: AppFont.public_sans,
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 24),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 48),
+
+              TextButton(
+                style: TextButton.styleFrom(
+                  minimumSize: Size(double.infinity, 60),
+                  textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: AppColors.blue_claro_1_opacity15,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
                 ),
+
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
@@ -89,10 +126,31 @@ class _ModulesState extends State<Modules> {
                     ),
                   );
                 },
-                child: progress != 1 ? Text("Continuar") : Text("Revisitar"),
+                child: progress == 0
+                    ? Text(
+                        "Começar",
+                        style: TextStyle(
+                          color: AppColors.blue_claro_2,
+                          fontFamily: AppFont.public_sans,
+                        ),
+                      )
+                    : progress == 1
+                    ? Text(
+                        "Revisitar",
+                        style: TextStyle(
+                          color: AppColors.blue_claro_2,
+                          fontFamily: AppFont.public_sans,
+                        ),
+                      )
+                    : Text(
+                        "Continuar",
+                        style: TextStyle(
+                          color: AppColors.blue_claro_2,
+                          fontFamily: AppFont.public_sans,
+                        ),
+                      ),
               ),
               SizedBox(height: 24),
-          
             ],
           ),
         ),

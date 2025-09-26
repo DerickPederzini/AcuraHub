@@ -5,11 +5,13 @@ class AppColors {
   static const blue_eurofarma = Color(0xFF00488E);
   static const blue_claro_1 = Color(0xFF0082CB);
   static const blue_claro_2 = Color(0xFF04B2E2);
+  static const blue_claro_1_opacity15 = Color.fromRGBO(0, 129, 203, 0.15);
   static const amarelo_eurofarma = Color(0xFFFFF200);
   static const cinza_claro_1 = Color(0xFFBBBABA);
   static const cinza_claro_2 = Color(0xFFD2D2D2);
   static const cinza_escuro = Color(0xFF54565B);
   static const cinza_escuro_2 = Color.fromARGB(255, 36, 36, 36);
+  static const cinza_escuro_3 = Color.fromARGB(255, 42, 42, 43);
   static const amarelo_internal = Color(0xFFF1B434);
   static const laranja_internal = Color(0xFFE87722);
   static const red_internal = Color(0xFFF9423A);
