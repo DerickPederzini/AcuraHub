@@ -16,7 +16,13 @@ class ChallengePage extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 180,
-            color: AppColors.goat_internal,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.blue_eurofarma, AppColors.blue_internal],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(

@@ -41,7 +41,7 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(width: 2, color: AppColors.text_create_page),
+          border: Border.all(width: 2, color: AppColors.cinza_escuro),
         ),
 
         child: Padding(
@@ -49,7 +49,7 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.electric_bolt, size: 60),
+              Icon(Icons.electric_bolt, size: 60, color: AppColors.cinza_claro_1,),
 
               const SizedBox(width: 10.0),
               Expanded(
@@ -59,22 +59,26 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                     Text(
                       "${widget.insignea.nome}",
                       style: const TextStyle(
-                        fontSize: 17,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: AppColors.branco
                       ),
                     ),
                     isExpanded
-                        ? Text("${widget.insignea.descricao}")
+                        ? Text(
+                          "${widget.insignea.descricao}",
+                          style: TextStyle(color: AppColors.cinza_claro_1),
+                          )
                         : SizedBox(),
                     const SizedBox(height: 5),
 
                     LinearProgressIndicator(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                       value: progress,
-                      minHeight: 16,
+                      minHeight: 12,
                       backgroundColor: Colors.grey[300],
                       valueColor: const AlwaysStoppedAnimation<Color>(
-                        Colors.blue,
+                        AppColors.blue_eurofarma,
                       ),
                     ),
                   ],
