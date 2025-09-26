@@ -22,4 +22,10 @@ public class InsigneaController {
     public ResponseEntity<List<InsigneasDTOResponse>> getAllInsigneas(@PathVariable Long id) {
         return ResponseEntity.ok(insigneaService.getAll());
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<InsigneasDTOResponse>> getAllInsigneasByUser(@PathVariable Long id) {
+        return ResponseEntity.ok(insigneaService.getAllInsigneasByUsuario(id));
+    }
+
 }

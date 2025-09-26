@@ -29,16 +29,10 @@ Future<List<Course>> fetchCourseByUserId() async {
 
   int idUser = decodedToken["id"] as int;
 
-  print("Before");
-
   final response = await http.get(
     Uri.parse('http://localhost:8081/etapas/user/$idUser'),
     headers: {"Authorization": "Bearer $jwt"},
   );
-
-  print("After");
-
-  print(response.body);
 
   if (response.statusCode == 200) {
     List<dynamic> jsonList = jsonDecode(response.body);

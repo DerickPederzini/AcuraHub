@@ -20,10 +20,10 @@ public class Insignea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "url_insignia")
     private String urlInsigea;
     private String nome;
     private String descricao;
-
 
     @OneToOne
     @JoinColumn(name = "etapa_id")

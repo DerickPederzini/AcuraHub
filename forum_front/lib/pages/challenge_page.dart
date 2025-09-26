@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/challenge/challenge_feed.dart';
 import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/services/achievementService.dart';
 
 class ChallengePage extends StatelessWidget {
   const ChallengePage({super.key});
@@ -56,7 +57,31 @@ class ChallengePage extends StatelessWidget {
           ),
           SizedBox(height: 8),
 
-          Expanded(child: ChallengeFeed()),
+          Expanded(
+            child: FutureBuilder(
+              future: fetchChallengeByUserId(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  Text("Erro: ${snapshot.error}");
+                } else if (snapshot.hasData) {
+                  final challenges = snapshot.data!;
+                  return ListView.separated(
+                    itemCount: challenges.length,
+                    itemBuilder: (context, index) {
+                      return ChallengeFeed(insignea: challenges[index]);
+                    },
+
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 16);
+                    },
+                  );
+                }
+                return Text("Sucks");
+              },
+            ),
+          ),
         ],
       ),
     );

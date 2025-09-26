@@ -89,7 +89,6 @@ class _CourseCardState extends State<CourseCard> {
                         child: SizedBox(
                           height: 2,
                           child: LinearProgressIndicator(
-                            // value: widget.course.progress?.toDouble(),
                             value: progress,
                             backgroundColor: Colors.grey[300],
                             valueColor: const AlwaysStoppedAnimation<Color>(
