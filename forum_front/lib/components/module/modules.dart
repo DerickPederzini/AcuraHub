@@ -15,6 +15,16 @@ class Modules extends StatefulWidget {
 }
 
 class _ModulesState extends State<Modules> {
+  late final double progress;
+
+  @override
+  void initState() {
+    progress =
+        widget.module.completedCapitulos! / widget.module.totalCapitulos!;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,8 +33,8 @@ class _ModulesState extends State<Modules> {
         children: [
           Row(
             children: [
-              Text("${widget.index + 1}. ", style: AppStyles.font_14_sans,),
-              Text("${widget.module.title}", style: AppStyles.font_14_sans,),
+              Text("${widget.index + 1}. ", style: AppStyles.font_14_sans),
+              Text("${widget.module.title}", style: AppStyles.font_14_sans),
             ],
           ),
           SizedBox(height: 16),
@@ -36,11 +46,11 @@ class _ModulesState extends State<Modules> {
                 child: SizedBox(
                   height: 4,
                   child: LinearProgressIndicator(
-                  value: (widget.module.completedCapitulos! / widget.module.totalCapitulos!),
+                    value: (progress),
                     backgroundColor: Colors.grey[300],
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      Colors.blue,
-                    ),
+                    valueColor: progress == 1
+                        ? const AlwaysStoppedAnimation<Color>(AppColors.blue_internal)
+                        : const AlwaysStoppedAnimation<Color>(AppColors.blue_claro_1),
                   ),
                 ),
               ),
@@ -71,7 +81,7 @@ class _ModulesState extends State<Modules> {
                 ),
               );
             },
-            child: Text("Continuar"),
+            child: progress != 1 ? Text("Continuar") : Text("Revisitar"),
           ),
           SizedBox(height: 24),
 
@@ -87,4 +97,3 @@ class _ModulesState extends State<Modules> {
     );
   }
 }
-

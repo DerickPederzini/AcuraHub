@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/components/module/modules.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
 import 'package:forum_front/constants/app_colors.dart';
@@ -41,7 +42,7 @@ class _ModulePageState extends State<ModulePage> {
           onPressed: () {
             Navigator.pushNamed(context, "/");
           },
-          child: Image(image: AssetImage("assets/logos/Euron.png")),
+          child: Image(image: AssetImage("assets/logos/Euron.png"),),
         ),
       ),
       drawer: AppDrawer(),
@@ -86,13 +87,13 @@ class _ModulePageState extends State<ModulePage> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: AppColors.blue_eurofarma,
+                          color: AppColors.blue_claro_2,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text("${etapa.descricao}."),
                       const SizedBox(height: 48),
-                      Text("CONTEÚDO", style: TextStyle(fontSize: 16)),
+                      Text("CONTEÚDOS", style: TextStyle(fontSize: 16)),
                     ],
                   ),
                 ),
@@ -106,6 +107,8 @@ class _ModulePageState extends State<ModulePage> {
           return Center(child: Text("No data found."));
         },
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: ChatButton(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
 import 'package:forum_front/models/capitulo.dart';
 import 'package:forum_front/services/capituloService.dart';
@@ -143,6 +144,8 @@ class _CapituloPageState extends State<CapituloPage> {
           );
         },
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: ChatButton(),
     );
   }
 }
