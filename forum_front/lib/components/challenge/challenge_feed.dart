@@ -31,7 +31,6 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
       progress =
           widget.insignea.capitulosCompletos! / widget.insignea.totalCapitulos!;
     }
-    print(progress);
   }
 
   @override

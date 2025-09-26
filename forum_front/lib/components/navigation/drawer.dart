@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/services/userService.dart';
 
 class ListItens {
   IconData icon;
@@ -8,16 +9,37 @@ class ListItens {
   ListItens({required this.icon, required this.text, required this.url});
 }
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
 
+  @override
+  State<AppDrawer> createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+
+  List<String> info = [];
+
   static final allListItens = [
-    ListItens(icon: Icons.person, text: "Perfil", url: "/perfil" ),
+    ListItens(icon: Icons.person, text: "Perfil", url: "/perfil"),
     ListItens(icon: Icons.assessment, text: "Boards", url: "/boards"),
-    ListItens(icon: Icons.checklist, text: "Desafios",url: "/challenge"),
+    ListItens(icon: Icons.checklist, text: "Desafios", url: "/challenge"),
     ListItens(icon: Icons.settings, text: "Configurações", url: "/"),
     ListItens(icon: Icons.exit_to_app, text: "Sair", url: "/login"),
   ];
+
+  @override
+  void initState() {
+    fetchInfo();
+    super.initState();
+  }
+
+  void fetchInfo() async {
+    final result = await decodeJwtForPerfil();
+    setState(() {
+      info = result; 
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +61,8 @@ class AppDrawer extends StatelessWidget {
               children: [
                 CircleAvatar(radius: 24),
                 SizedBox(height: 4),
-                Text("Derick", style: TextStyle(fontSize: 18)),
-                Text("@pederzini"),
+                Text(info.isNotEmpty ? info[0] : "", style: TextStyle(fontSize: 18)),
+                Text(info.isNotEmpty ? info[1] : ""),
               ],
             ),
           ),
@@ -54,7 +76,9 @@ class AppDrawer extends StatelessWidget {
                 horizontalTitleGap: 32,
                 title: TextButton(
                   style: TextButton.styleFrom(alignment: Alignment.centerLeft),
-                  onPressed: () => {Navigator.pushNamed(context, allListItens[index].url)},
+                  onPressed: () => {
+                    Navigator.pushNamed(context, allListItens[index].url),
+                  },
                   child: Text(
                     allListItens[index].text,
                     style: TextStyle(fontSize: 24, color: Colors.white70),
