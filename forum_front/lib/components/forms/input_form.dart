@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/constants/app_font.dart';
 
 class InputForm extends StatefulWidget {
   final String placeholder;
@@ -25,7 +26,7 @@ class _InputFormState extends State<InputForm> {
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: widget.onChanged,
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white, fontFamily: AppFont.public_sans),
       obscureText: widget.placeholder == "Senha" ? visibility_password : false,
       decoration: InputDecoration(
         hintText: widget.placeholder,

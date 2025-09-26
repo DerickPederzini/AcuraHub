@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/constants/app_font.dart';
 
 class FormButtonFill extends StatelessWidget {
 
@@ -19,6 +20,7 @@ final VoidCallback? onPressed;
         child: Text(
           buttonText,
           style: TextStyle(
+            fontFamily: AppFont.public_sans,
             color: Colors.white70,
             fontWeight: FontWeight.bold,
             fontSize: 18,

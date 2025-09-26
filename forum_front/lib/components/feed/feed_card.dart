@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/constants/app_font.dart';
+import 'package:forum_front/constants/app_styles.dart';
 
 class FeedCard extends StatefulWidget {
   const FeedCard({super.key});
@@ -85,7 +87,7 @@ class _FeedCardState extends State<FeedCard> {
                           children: [
                             Icon(Icons.heart_broken, size: 14),
                             SizedBox(width: 2),
-                            Text("12k", style: TextStyle(fontSize: 14)),
+                            Text("12k", style: AppStyles.font_14_sans),
                           ],
                         ),
                       ),
@@ -98,7 +100,7 @@ class _FeedCardState extends State<FeedCard> {
                           children: [
                             Icon(Icons.comment, size: 14),
                             SizedBox(width: 2),
-                            Text("500", style: TextStyle(fontSize: 14)),
+                            Text("500", style: AppStyles.font_14_sans),
                           ],
                         ),
                       ),
@@ -123,7 +125,7 @@ class _FeedCardState extends State<FeedCard> {
                           children: [
                             Icon(Icons.share, size: 14),
                             SizedBox(width: 2),
-                            Text("1380", style: TextStyle(fontSize: 14)),
+                            Text("1380", style: AppStyles.font_14_sans),
                           ],
                         ),
                       ),

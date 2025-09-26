@@ -52,7 +52,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               const SizedBox(height: 4),
               Text(
                 widget.info.length > 1 ? widget.info[1] : "",
-                style: TextStyle(color: Colors.grey.shade700, fontSize: 14),
+                style: TextStyle(color: Colors.grey.shade700, fontSize: 14, fontFamily: 'Public Sans'),
               ),
             ],
           ),

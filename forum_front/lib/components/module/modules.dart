@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/constants/app_styles.dart';
 import 'package:forum_front/helpers/capitulo_page_args.dart';
 import 'package:forum_front/models/module.dart';
 
@@ -22,8 +23,8 @@ class _ModulesState extends State<Modules> {
         children: [
           Row(
             children: [
-              Text("${widget.index + 1}. ", style: TextStyle(fontSize: 14),),
-              Text("${widget.module.title}", style: TextStyle(fontSize: 14),),
+              Text("${widget.index + 1}. ", style: AppStyles.font_14_sans,),
+              Text("${widget.module.title}", style: AppStyles.font_14_sans,),
             ],
           ),
           SizedBox(height: 16),
