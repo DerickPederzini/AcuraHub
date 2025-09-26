@@ -6,6 +6,8 @@ class Insignea {
   int? capitulosCompletos;
   int? totalCapitulos;
   bool concluida;
+  //bool recompensaResgatada;
+
 
   Insignea({
     required this.id,
@@ -15,6 +17,7 @@ class Insignea {
     required this.capitulosCompletos,
     required this.totalCapitulos,
     required this.concluida,
+    //required this.recompensaResgatada
   });
 
   factory Insignea.fromJson(Map<String, dynamic> json) {
@@ -26,6 +29,7 @@ class Insignea {
       concluida: json["concluida"] as bool,
       totalCapitulos: json["totalCapitulos"] as int?,
       capitulosCompletos: json["capitulosCompletos"] as int?,
+      //recompensaResgatada: json["recompensaResgatada"] as bool
     );
   }
 }

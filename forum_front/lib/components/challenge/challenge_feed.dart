@@ -14,6 +14,7 @@ class ChallengeFeed extends StatefulWidget {
 
 class _ChallengeFeedState extends State<ChallengeFeed> {
   bool isExpanded = false;
+  bool recompensaResgatada = false;
   late int totalCapitulos;
   late int capitulosCompletos;
   late double progress;
@@ -48,7 +49,17 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.electric_bolt, size: 60, color: AppColors.cinza_claro_1,),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.cinza_escuro),
+                  borderRadius: BorderRadius.circular(128),
+                ),
+                child: Icon(
+                  Icons.electric_bolt,
+                  size: 60,
+                  color: AppColors.blue_claro_1,
+                ),
+              ),
 
               const SizedBox(width: 10.0),
               Expanded(
@@ -60,13 +71,13 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.branco
+                        color: AppColors.branco,
                       ),
                     ),
                     isExpanded
                         ? Text(
-                          "${widget.insignea.descricao}",
-                          style: TextStyle(color: AppColors.cinza_claro_1),
+                            "${widget.insignea.descricao}",
+                            style: TextStyle(color: AppColors.cinza_claro_1),
                           )
                         : SizedBox(),
                     const SizedBox(height: 5),
@@ -78,6 +89,30 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                       backgroundColor: Colors.grey[300],
                       valueColor: const AlwaysStoppedAnimation<Color>(
                         AppColors.blue_eurofarma,
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: progress == 1 ? AppColors.blue_claro_1 : AppColors.cinza_escuro_2,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: progress == 1
+                          ? () {
+                              setState(() {
+                                recompensaResgatada = true;
+                              });
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text("Recompensa resgatada!"),
+                                ),
+                              );
+                            }
+                          : null,
+                      child: Text(
+                        recompensaResgatada ? "Resgatado" : "Resgatar Recompensa",
                       ),
                     ),
                   ],
