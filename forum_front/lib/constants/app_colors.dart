@@ -9,6 +9,7 @@ class AppColors {
   static const cinza_claro_1 = Color(0xFFBBBABA);
   static const cinza_claro_2 = Color(0xFFD2D2D2);
   static const cinza_escuro = Color(0xFF54565B);
+  static const cinza_escuro_2 = Color(0xFF54565B);
   static const amarelo_internal = Color(0xFFF1B434);
   static const laranja_internal = Color(0xFFE87722);
   static const red_internal = Color(0xFFF9423A);
@@ -21,7 +22,7 @@ class AppColors {
 
   static const grey_70 = Colors.white70;
   static const text_create_page = Color.fromRGBO(170, 170, 170, 1);
-  static const grey_dark = Color.fromRGBO(35, 34, 44, 1);
+  static const grey_dark = Color.fromRGBO(28, 28, 29, 1);
   static const text_message_me = Color.fromARGB(255, 1, 164, 193);
 
 }

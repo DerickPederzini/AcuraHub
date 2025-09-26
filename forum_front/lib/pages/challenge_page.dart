@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/challenge/challenge_feed.dart';
+import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/constants/app_colors.dart';
 import 'package:forum_front/services/achievementService.dart';
 
@@ -72,14 +73,13 @@ class ChallengePage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ChallengeFeed(insignea: challenges[index]);
                     },
-
                     separatorBuilder: (context, index) {
                       return const SizedBox(height: 16);
                     },
                   );
                 }
                 return Text("Sucks");
-              },
+              }      
             ),
           ),
         ],
