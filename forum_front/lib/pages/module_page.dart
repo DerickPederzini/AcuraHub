@@ -100,7 +100,7 @@ class _ModulePageState extends State<ModulePage> {
                 ),
                 for (int index = 0; index < moduleData.length; index++) ...[
                   Modules(module: moduleData[index], index: index),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 12),
                 ],
               ],
             );
