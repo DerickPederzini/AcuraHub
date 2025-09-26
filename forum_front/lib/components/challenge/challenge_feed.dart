@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:forum_front/constants/app_colors.dart';
 import 'package:forum_front/models/challenge.dart';
 import 'package:forum_front/models/insignea.dart';
@@ -49,17 +50,28 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.cinza_escuro),
-                  borderRadius: BorderRadius.circular(128),
-                ),
-                child: Icon(
-                  Icons.electric_bolt,
-                  size: 60,
-                  color: AppColors.blue_claro_1,
+              
+              ShaderMask(
+                shaderCallback: (bounds) => LinearGradient(
+                  colors: [AppColors.amarelo_eurofarma, Colors.orange, Colors.red],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ).createShader(bounds),
+                child: FaIcon(
+                  FontAwesomeIcons.trophy,
+                  size: 40,
+                  color:
+                      Colors.white, // precisa ser branco pra pegar o gradiente
                 ),
               ),
+              
+
+              //Tudo normar se usar esse, sem branco picotado
+              // FaIcon(
+              //   FontAwesomeIcons.trophy,
+              //   size: 40,
+              //   color: AppColors.amarelo_eurofarma,
+              // ),
 
               const SizedBox(width: 10.0),
               Expanded(
