@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:forum_front/constants/app_colors.dart';
-import 'package:forum_front/models/challenge.dart';
 import 'package:forum_front/models/insignea.dart';
 
 class ChallengeFeed extends StatefulWidget {
@@ -24,10 +23,14 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
   void initState() {
     super.initState();
 
+        
+
     totalCapitulos = widget.insignea.totalCapitulos ?? 0;
     capitulosCompletos = widget.insignea.capitulosCompletos ?? 0;
 
-    progress = 0.0;
+    progress = capitulosCompletos / totalCapitulos;
+
+    progress = 0.7;
     if (widget.insignea.totalCapitulos != null &&
         widget.insignea.totalCapitulos! > 0) {
       progress =
@@ -94,15 +97,42 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                         : SizedBox(),
                     const SizedBox(height: 5),
 
-                    LinearProgressIndicator(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                      value: progress,
-                      minHeight: 12,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        AppColors.blue_eurofarma,
+                    SizedBox(
+                      height: 12,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                        child: Stack(
+                          children: [
+                            Container(color: Colors.grey[300]),
+                            FractionallySizedBox(
+                              alignment: Alignment.centerLeft,
+                              widthFactor: progress,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.amarelo_eurofarma, Colors.orange, Colors.red,
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
+
+                    // LinearProgressIndicator(
+                    //   borderRadius: BorderRadius.all(Radius.circular(12)),
+                    //   value: progress,
+                    //   minHeight: 12,
+                    //   backgroundColor: Colors.grey[300],
+                    //   valueColor: const AlwaysStoppedAnimation<Color>(
+                    //     AppColors.blue_eurofarma,
+                    //   ),
+                    // ),
 
                     const SizedBox(height: 24),
 
