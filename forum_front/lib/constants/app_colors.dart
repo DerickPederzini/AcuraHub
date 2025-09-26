@@ -17,6 +17,7 @@ class AppColors {
   static const blue_internal = Color(0xFF008C95);
   static const goat_internal = Color(0xFF006269);
   static const roxo_internal = Color(0xFF6558B1);
+
   static const grey_70 = Colors.white70;
   static const text_create_page = Color.fromRGBO(170, 170, 170, 1);
   static const grey_dark = Color.fromRGBO(35, 34, 44, 1);
