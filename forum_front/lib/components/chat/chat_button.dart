@@ -16,10 +16,11 @@ class _ChatButtonState extends State<ChatButton> {
       onPressed: () => {
         showChatDialog(context)
       },
-
+      padding: EdgeInsets.all(10),
+      style: IconButton.styleFrom(backgroundColor: AppColors.blue_claro_1),
       iconSize: 30,
-      icon: Icon(Icons.message_outlined),
-      color: AppColors.blue_eurofarma,
+      icon: Icon(Icons.chat_bubble_outline),
+      color: AppColors.branco,
     );
   }
 }

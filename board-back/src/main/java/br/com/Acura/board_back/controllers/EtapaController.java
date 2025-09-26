@@ -5,7 +5,6 @@ import br.com.Acura.board_back.data.dtos.EtapaDTORequest;
 import br.com.Acura.board_back.data.dtos.EtapaDTOResponse;
 import br.com.Acura.board_back.services.EtapaService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +14,24 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/etapas")
+@RequestMapping("/etapas")
 public class EtapaController {
 
     @Autowired
     private EtapaService etapaService;
 
     @GetMapping
-    public ResponseEntity<List<EtapaDTOResponse>> getAllEtapas () {
+    public ResponseEntity<List<EtapaDTOResponse>> getAllEtapas() {
         return ResponseEntity.ok(etapaService.getAll());
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<EtapaDTOResponse>> getAllEtapas(@PathVariable Long id) {
+        List<EtapaDTOResponse> etapas = etapaService.getAllEtapasByUsuario(id);
+        return ResponseEntity.ok(etapas);
+    }
+
+
 
     @PostMapping
     public ResponseEntity<EtapaDTOResponse> createEtapa(@RequestBody @Valid EtapaDTORequest request) {
@@ -32,13 +39,16 @@ public class EtapaController {
         URI uri = ServletUriComponentsBuilder.
                 fromCurrentRequestUri()
                 .path("/{id}")
-                .buildAndExpand(response.id())
+                .buildAndExpand(response)
                 .toUri();
         return ResponseEntity.created(uri).body(response);
 
     }
 
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<EtapaDTOResponse> getEtapaById(@PathVariable Long id) {
+        EtapaDTOResponse etapaDTOResponse = etapaService.getById(id);
+        return ResponseEntity.ok(etapaDTOResponse);
+    }
 
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
+import 'package:forum_front/pages/challenge_page.dart';
 import 'package:forum_front/pages/course_page.dart';
-import 'package:forum_front/pages/create_page.dart';
 import 'package:forum_front/pages/home_feed.dart';
 import 'package:forum_front/pages/notifications_page.dart';
 import 'package:forum_front/pages/profile_page.dart';
@@ -22,7 +22,7 @@ class _HomePageState extends State<LayoutPage> {
   final List<Widget> _allPages = [
     HomeFeed(),
     CoursePage(),
-    CreatePage(),
+    ChallengePage(),
     NotificationsPage(),
     ProfilePage(),
   ];
@@ -43,6 +43,7 @@ class _HomePageState extends State<LayoutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: TextButton(
           onPressed: () {
             Navigator.pushNamed(context, "/");
@@ -62,20 +63,20 @@ class _HomePageState extends State<LayoutPage> {
         unselectedItemColor: Colors.white70,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 24),
-            label: "Home",
+            icon: Icon(Icons.newspaper, size: 24),
+            label: "Notícias",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.map, size: 24),
-            label: "Projects",
+            icon: Icon(Icons.assessment, size: 24),
+            label: "Boards",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.create, size: 24),
-            label: "Create",
+            icon: Icon(Icons.checklist, size: 24),
+            label: "Desafios",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notification_add, size: 24),
-            label: "Notifications",
+            label: "Notificação",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, size: 24),

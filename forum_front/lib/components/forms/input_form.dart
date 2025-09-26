@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/constants/app_font.dart';
 
 class InputForm extends StatefulWidget {
   final String placeholder;
   final IconData iconPlace;
+  final ValueChanged<String>? onChanged;
 
   const InputForm({
     super.key,
     required this.placeholder,
     required this.iconPlace,
+    required this.onChanged
   });
 
   @override
@@ -22,7 +25,8 @@ class _InputFormState extends State<InputForm> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: Colors.white),
+      onChanged: widget.onChanged,
+      style: const TextStyle(color: Colors.white, fontFamily: AppFont.public_sans),
       obscureText: widget.placeholder == "Senha" ? visibility_password : false,
       decoration: InputDecoration(
         hintText: widget.placeholder,

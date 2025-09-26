@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/forms/form_button_fill.dart';
 import 'package:forum_front/components/forms/form_button_outlined.dart';
 import 'package:forum_front/components/forms/input_form.dart';
+import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/services/authService.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -9,7 +13,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 30, 33, 34),
+      backgroundColor: AppColors.grey_dark,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -19,34 +23,170 @@ class RegisterPage extends StatelessWidget {
               Image(image: AssetImage("assets/logos/Euron.png")),
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Form(
-                    child: Column(
-                      children: [
-                        InputForm(
-                          placeholder: "E-mail",
-                          iconPlace: Icons.email,
-                        ),
-                        SizedBox(height: 16),
-                        InputForm(placeholder: "Senha", iconPlace: Icons.key),
-                        SizedBox(height: 16),
-                        InputForm(placeholder: "CPF", iconPlace: Icons.person),
-                        SizedBox(height: 64),
-                        FormButtonFill(buttonText: "Criar", navigate: "/"),
-                        SizedBox(height: 16),
-                        FormButtonOutlined(
-                          buttonText: "Voltar",
-                          navigate: "/login",
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                children: [RegisterForm()],
               ),
               SizedBox(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({super.key});
+
+  @override
+  State<RegisterForm> createState() => _RegisterFormState();
+}
+
+class _RegisterFormState extends State<RegisterForm> {
+  String username = "";
+  String email = "";
+  String senha = "";
+  String cpf = "";
+  bool isLoading = false;
+  List<String> atuacoes = [
+    'SELECIONE UMA OPÇÃO',
+    'DESENVOLVEDOR',
+    'MARKETING',
+    'GESTOR',
+  ];
+  String? isSelected = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> handleRegister(BuildContext context) async {
+    if (senha.isEmpty && email.isEmpty && cpf.isEmpty && username.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Preencha todos os campos.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+      return;
+    }
+
+    if (isSelected == "SELECIONE UMA OPÇÃO" || isSelected == "") {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Selecione um campo de atuação.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+      return;
+    }
+
+    if (senha.length < 8) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Senha deve ter ao menos 8 caracteres.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+      return;
+    }
+
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      await registerUser(email, senha, username, cpf, isSelected!);
+      await login(email, senha);
+
+      if (mounted) {
+        Navigator.pushReplacementNamed(context, "/");
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Cadastro inválido.'),
+          action: SnackBarAction(label: 'Esconder', onPressed: () {}),
+        ),
+      );
+
+      throw Exception(e);
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          InputForm(
+            placeholder: "Username",
+            iconPlace: Icons.person,
+            onChanged: (value) {
+              setState(() {
+                username = value;
+              });
+            },
+          ),
+          SizedBox(height: 16),
+          InputForm(
+            placeholder: "E-mail",
+            iconPlace: Icons.email,
+            onChanged: (value) => {
+              setState(() {
+                email = value;
+              }),
+            },
+          ),
+          SizedBox(height: 16),
+          InputForm(
+            placeholder: "Senha",
+            iconPlace: Icons.key,
+            onChanged: (value) => {
+              setState(() {
+                senha = value;
+              }),
+            },
+          ),
+          SizedBox(height: 16),
+          InputForm(
+            placeholder: "CPF",
+            iconPlace: Icons.person,
+            onChanged: (value) => {
+              setState(() {
+                cpf = value;
+              }),
+            },
+          ),
+          SizedBox(height: 16),
+          DropdownMenu<String>(
+            initialSelection: atuacoes[0],
+            dropdownMenuEntries: atuacoes
+                .map(
+                  (atuacao) => DropdownMenuEntry<String>(
+                    value: atuacao,
+                    label: atuacao.toString(),
+                  ),
+                )
+                .toList(),
+            onSelected: (String? newValue) {
+              setState(() {
+                isSelected = newValue;
+              });
+            },
+          ),
+
+          SizedBox(height: 64),
+          FormButtonFill(
+            buttonText: "Criar",
+            onPressed: isLoading ? null : () => handleRegister(context),
+          ),
+          SizedBox(height: 16),
+          FormButtonOutlined(buttonText: "Voltar", navigate: "/login"),
+        ],
       ),
     );
   }

@@ -1,22 +1,33 @@
 package br.com.Acura.board_back.entities;
 
-
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
-@Entity(name = "tb_etapa")
+@Entity
+@Table(name = "tb_etapa")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 public class Etapa {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titulo;
-    private Integer progresso;
-    private List<Modulo> modulos;
 
+    private String titulo;
+    private String descricao;
+    private String urlImagem;
+
+    @Enumerated(EnumType.STRING)
+    private Tipo tema;
+
+    @OneToMany(mappedBy = "etapa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Modulo> modulos;
+
+    @OneToOne(mappedBy = "etapa")
+    private Insignea insignea;
 }
