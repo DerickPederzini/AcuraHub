@@ -16,7 +16,13 @@ class ChallengePage extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 180,
-            color: AppColors.blue_eurofarma,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.blue_eurofarma, AppColors.blue_internal],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -26,7 +32,7 @@ class ChallengePage extends StatelessWidget {
                   Text(
                     "Challenge",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.branco,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
@@ -36,7 +42,7 @@ class ChallengePage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: AppColors.branco,
                     ),
                   ),
                 ],
@@ -51,7 +57,7 @@ class ChallengePage extends StatelessWidget {
               "Missões atuais",
               style: TextStyle(
                 fontSize: 24,
-                color: Colors.white,
+                color: AppColors.branco,
                 fontWeight: FontWeight.bold,
               ),
             ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/constants/app_colors.dart';
+
 
 class ProfileHeader extends StatefulWidget {
   final List<String> info;
@@ -20,7 +22,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               height: 140,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.blue.shade400, Colors.blue.shade700],
+                  colors: [AppColors.goat_internal, AppColors.blue_internal],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -30,8 +32,8 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
               child: CircleAvatar(
                 radius: 32,
-                backgroundColor: Colors.white,
-                child: Text(widget.info[0][0], style: TextStyle(fontSize: 32),)
+                backgroundColor: AppColors.branco,
+                child: Text(widget.info[0][0], style: TextStyle(fontSize: 32, color: AppColors.goat_internal),)
               ),
             ),
           ],
@@ -52,7 +54,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
               const SizedBox(height: 4),
               Text(
                 widget.info.length > 1 ? widget.info[1] : "",
-                style: TextStyle(color: Colors.grey.shade700, fontSize: 14, fontFamily: 'Public Sans'),
+                style: TextStyle(color: AppColors.cinza_claro_1, fontSize: 14, fontFamily: 'Public Sans'),
               ),
             ],
           ),
