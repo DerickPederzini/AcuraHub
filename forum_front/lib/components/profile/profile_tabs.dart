@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/constants/app_colors.dart';
 
 class ProfileTabs extends StatefulWidget {
   const ProfileTabs({
@@ -19,7 +20,7 @@ class _ProfileTabsState extends State<ProfileTabs> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
+        border: Border(bottom: BorderSide(color: AppColors.cinza_escuro)),
       ),
       child: Row(
         children: [
@@ -30,8 +31,8 @@ class _ProfileTabsState extends State<ProfileTabs> {
                 "Conquistas",
                 style: TextStyle(
                   color: widget.selectedTab == 0
-                      ? Colors.blue.shade700
-                      : Colors.grey.shade600,
+                      ? AppColors.blue_claro_2
+                      : AppColors.cinza_claro_1,
                   fontWeight: widget.selectedTab == 0
                       ? FontWeight.bold
                       : FontWeight.normal,
@@ -46,8 +47,8 @@ class _ProfileTabsState extends State<ProfileTabs> {
                 "Notícias Salvas",
                 style: TextStyle(
                   color: widget.selectedTab == 1
-                      ? Colors.blue.shade700
-                      : Colors.grey.shade600,
+                      ? AppColors.blue_claro_2
+                      : AppColors.cinza_claro_1,
                   fontWeight: widget.selectedTab == 1
                       ? FontWeight.bold
                       : FontWeight.normal,
