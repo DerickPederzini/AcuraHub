@@ -39,7 +39,7 @@ class _CourseCardState extends State<CourseCard> {
 
     if (screenWidth < 600) {
       return Container(
-        decoration: BoxDecoration(color: const Color.fromARGB(255, 31, 31, 31)),
+        decoration: BoxDecoration(color: AppColors.cinza_escuro_2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -53,7 +53,9 @@ class _CourseCardState extends State<CourseCard> {
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: AppColors.blue_claro_2,
+                      color: progress == 1
+                          ? AppColors.blue_internal
+                          : AppColors.blue_claro_1,
                       fontFamily: AppFont.public_sans,
                     ),
                   ),
@@ -71,7 +73,12 @@ class _CourseCardState extends State<CourseCard> {
               width: double.infinity,
               height: 280,
               decoration: BoxDecoration(
-                border: Border.all(width: 6, color: AppColors.blue_claro_2),
+                border: Border.all(
+                  width: 6,
+                  color: progress == 1
+                      ? AppColors.blue_internal
+                      : AppColors.blue_claro_1,
+                ),
                 borderRadius: BorderRadius.zero,
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -93,9 +100,13 @@ class _CourseCardState extends State<CourseCard> {
                           child: LinearProgressIndicator(
                             value: progress,
                             backgroundColor: AppColors.cinza_claro_1,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                              AppColors.blue_claro_2,
-                            ),
+                            valueColor: progress == 1
+                                ? const AlwaysStoppedAnimation<Color>(
+                                    AppColors.blue_internal,
+                                  )
+                                : const AlwaysStoppedAnimation<Color>(
+                                    AppColors.blue_claro_1,
+                                  ),
                           ),
                         ),
                       ),
@@ -103,7 +114,7 @@ class _CourseCardState extends State<CourseCard> {
                       Text(
                         '${(progress * 100).toStringAsFixed(0)}%',
                         style: const TextStyle(
-                          color: AppColors.grey_70,
+                          color: AppColors.cinza_escuro,
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
                           fontFamily: AppFont.public_sans,
@@ -123,7 +134,9 @@ class _CourseCardState extends State<CourseCard> {
                     style: OutlinedButton.styleFrom(
                       minimumSize: Size(double.infinity, 64),
                       side: BorderSide(
-                        color: AppColors.blue_claro_2,
+                        color: progress == 1
+                            ? AppColors.blue_internal
+                            : AppColors.blue_claro_1,
                         width: 2,
                       ),
                       shape: RoundedRectangleBorder(
@@ -131,9 +144,15 @@ class _CourseCardState extends State<CourseCard> {
                       ),
                     ),
                     child: Text(
-                      fazendo ? "Continuar" : "Começar",
+                      progress == 1
+                          ? "REVISAR"
+                          : progress == 0
+                          ? "COMEÇAR"
+                          : "CONTINUAR",
                       style: TextStyle(
-                        color: AppColors.blue_claro_2,
+                        color: progress == 1
+                            ? AppColors.blue_internal
+                            : AppColors.blue_claro_1,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         fontFamily: AppFont.public_sans,

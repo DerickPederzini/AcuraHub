@@ -58,6 +58,7 @@ class _CapituloPageState extends State<CapituloPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: TextButton(
           onPressed: () => Navigator.pushNamed(context, "/"),
           child: Image.asset("assets/logos/Euron.png", height: 40),
