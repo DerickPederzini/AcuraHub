@@ -22,7 +22,6 @@ Future<List<Insignea>> fetchChallengeByUserId() async {
 
   if (response.statusCode == 200) {
     List<dynamic> jsonList = jsonDecode(response.body);
-    print(jsonList);
     return jsonList.map((e) => Insignea.fromJson(e)).toList();
   } else {
     throw Exception('Erro ao carregar etapas');

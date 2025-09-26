@@ -9,7 +9,7 @@ class AppColors {
   static const cinza_claro_1 = Color(0xFFBBBABA);
   static const cinza_claro_2 = Color(0xFFD2D2D2);
   static const cinza_escuro = Color(0xFF54565B);
-  static const cinza_escuro_2 = Color(0xFF54565B);
+  static const cinza_escuro_2 = Color.fromARGB(255, 36, 36, 36);
   static const amarelo_internal = Color(0xFFF1B434);
   static const laranja_internal = Color(0xFFE87722);
   static const red_internal = Color(0xFFF9423A);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:forum_front/components/forms/form_button_fill.dart';
 import 'package:forum_front/components/forms/form_button_outlined.dart';
 import 'package:forum_front/components/forms/input_form.dart';
+import 'package:forum_front/constants/app_colors.dart';
 import 'package:forum_front/services/authService.dart';
 
 class LoginPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 30, 33, 34),
+      backgroundColor: AppColors.grey_dark,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(

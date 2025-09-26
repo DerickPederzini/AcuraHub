@@ -43,6 +43,7 @@ class _HomePageState extends State<LayoutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: TextButton(
           onPressed: () {
             Navigator.pushNamed(context, "/");
