@@ -21,18 +21,12 @@ import java.util.Set;
 public class ResponsePerfilDTO {
     private String username;
     private Set<Etapa> etapas;
-    private Set<Insignea> insigneas;
     @Enumerated(EnumType.STRING)
     private Atuacao atuacao;
 
     public ResponsePerfilDTO(Usuario usuario) {
-        setInsigneas(usuario.getInsigneas());
         setUsername(usuario.getUsername());
-        Set<Insignea> insignea = usuario.getInsigneas();
         Set<Etapa> etapa = new HashSet<>();
-        for(Insignea insignea1 : insignea) {
-            etapa.add(insignea1.getEtapa());
-        }
         setAtuacao(usuario.getAtuacao());
         setEtapas(etapa);
     }

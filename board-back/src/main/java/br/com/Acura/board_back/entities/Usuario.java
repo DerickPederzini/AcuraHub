@@ -32,13 +32,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<ProgressoUsuario> progressoUsuarios;
 
-    @ManyToMany
-    @JoinTable(
-            name = "usuario_insignea",
-            joinColumns = @JoinColumn(name = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "id_insignea")
-    )
-    private Set<Insignea> insigneas = new HashSet<>();
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<InsigneaUsuario> usuarioInsigneas = new HashSet<>();
 
 
 }

@@ -23,14 +23,14 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
   void initState() {
     super.initState();
 
-        
-
     totalCapitulos = widget.insignea.totalCapitulos ?? 0;
     capitulosCompletos = widget.insignea.capitulosCompletos ?? 0;
 
     progress = capitulosCompletos / totalCapitulos;
-
-    progress = 0.7;
+    progress = 0.0;
+    if (widget.insignea.id == 1) {
+      progress = 1;
+    }
     if (widget.insignea.totalCapitulos != null &&
         widget.insignea.totalCapitulos! > 0) {
       progress =
@@ -53,10 +53,13 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               ShaderMask(
                 shaderCallback: (bounds) => LinearGradient(
-                  colors: [AppColors.amarelo_eurofarma, Colors.orange, Colors.red],
+                  colors: [
+                    AppColors.amarelo_eurofarma,
+                    Colors.orange,
+                    Colors.red,
+                  ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ).createShader(bounds),
@@ -67,7 +70,6 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                       Colors.white, // precisa ser branco pra pegar o gradiente
                 ),
               ),
-              
 
               //Tudo normar se usar esse, sem branco picotado
               // FaIcon(
@@ -75,7 +77,6 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
               //   size: 40,
               //   color: AppColors.amarelo_eurofarma,
               // ),
-
               const SizedBox(width: 10.0),
               Expanded(
                 child: Column(
@@ -113,7 +114,9 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                                 decoration: const BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      AppColors.amarelo_eurofarma, Colors.orange, Colors.red,
+                                      AppColors.amarelo_eurofarma,
+                                      Colors.orange,
+                                      Colors.red,
                                     ],
                                   ),
                                 ),
@@ -133,12 +136,13 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                     //     AppColors.blue_eurofarma,
                     //   ),
                     // ),
-
                     const SizedBox(height: 24),
 
                     TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: progress == 1 ? AppColors.blue_claro_1 : AppColors.cinza_escuro_2,
+                        backgroundColor: progress == 1
+                            ? AppColors.blue_claro_1
+                            : AppColors.cinza_escuro_2,
                         foregroundColor: Colors.white,
                       ),
                       onPressed: progress == 1
@@ -154,7 +158,9 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                             }
                           : null,
                       child: Text(
-                        recompensaResgatada ? "Resgatado" : "Resgatar Recompensa",
+                        recompensaResgatada
+                            ? "Resgatado"
+                            : "Resgatar Recompensa",
                       ),
                     ),
                   ],

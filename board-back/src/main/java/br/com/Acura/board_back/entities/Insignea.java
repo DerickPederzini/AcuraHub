@@ -29,6 +29,6 @@ public class Insignea {
     @JoinColumn(name = "etapa_id")
     private Etapa etapa;
 
-    @ManyToMany(mappedBy = "insigneas")
-    private Set<Usuario> usuarios = new HashSet<>();
+    @OneToMany(mappedBy = "insignea", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<InsigneaUsuario> usuarioInsigneas = new HashSet<>();
 }
