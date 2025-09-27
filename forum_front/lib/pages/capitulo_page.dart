@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
+import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/constants/app_font.dart';
 import 'package:forum_front/models/capitulo.dart';
 import 'package:forum_front/services/capituloService.dart';
 import 'package:video_player/video_player.dart';
@@ -88,10 +90,11 @@ class _CapituloPageState extends State<CapituloPage> {
                 for (var capitulo in capitulos) ...[
                   Text(
                     capitulo.titulo?.toUpperCase() ?? "",
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.pinkAccent,
+                      color: AppColors.blue_claro_2,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -123,8 +126,13 @@ class _CapituloPageState extends State<CapituloPage> {
                   if (capitulo.urlVideo != null) const SizedBox(height: 12),
 
                   Text(
-                    capitulo.body ?? "",
-                    style: const TextStyle(fontSize: 16, height: 1.5),
+                    (capitulo.body ?? "").replaceAll(r'\n', '\n'),
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      height: 1.6,
+                      fontFamily: AppFont.public_sans,
+                    ),
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -132,10 +140,17 @@ class _CapituloPageState extends State<CapituloPage> {
                 // Single Concluir button at the bottom
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: TextStyle(fontSize: 18),
+                      backgroundColor: AppColors.blue_claro_1_opacity15,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                    ),
                     onPressed: () => {
                       _concluirModulo(capitulos),
-                      Navigator.pushNamed(context, "/"),
+                      Navigator.pushNamed(context, "/boards"),
                     },
                     child: const Text("Concluir Módulo"),
                   ),
