@@ -21,20 +21,18 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 //            " where u.id = :id")
 //    Optional<Usuario> findAllFieldsByIdWithInsignea(@Param("id") Long id);
 
-    @Query("SELECT u from Usuario u " +
-            "LEFT JOIN FETCH u.insigneas i " +
-            "LEFT JOIN FETCH i.etapa e " +
-            "LEFT JOIN FETCH u.progressoUsuarios p " +
-            "LEFT JOIN FETCH p.capitulo c " +
-            "where u.id = :id")
+    @Query("""
+    SELECT DISTINCT u FROM Usuario u
+    LEFT JOIN FETCH u.usuarioInsigneas ui
+    LEFT JOIN FETCH ui.insignea i
+    LEFT JOIN FETCH i.etapa e
+    LEFT JOIN FETCH u.progressoUsuarios p
+    LEFT JOIN FETCH p.capitulo c
+    WHERE u.id = :id
+""")
+
     Optional<Usuario> findAllByIdWithInsignea(@Param("id") Long id);
 
-    @Query("""
-            SELECT COUNT(i) FROM Usuario u
-            JOIN u.insigneas i
-            WHERE u.id = :id
-            """)
-    long countInsigneasFromUsuario(@Param("id") Long id);
 
 
 }

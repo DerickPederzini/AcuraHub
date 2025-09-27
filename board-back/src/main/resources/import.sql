@@ -1,7 +1,7 @@
-INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Plataforma Clic', 'INOVACAO', 'Aprenda uma das principais plataformas da Eurofarma, o Clic, onde suas ideias fazem diferença','https://media.licdn.com/dms/image/sync/v2/D4D27AQHuANrUxz-R9g/articleshare-shrink_800/articleshare-shrink_800/0/1711896888135?e=2147483647&v=beta&t=NVQaXRXRfaioyhP4dxVB5xRTCpc65l4pMDcQKFCAwHY');
-INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Plataforma Kaizen', 'INOVACAO', 'Aprenda uma das principais plataformas da Eurofarma, o Clic, onde suas ideias podem fazer diferença', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
-INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Programa EVA', 'INOVACAO', 'Aprenda sobre o robô queridinho da Eurofarma o EVA, seu parceiro para todos os momentos', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
-INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Oficina Digital', 'DESENVOLVIMENTO', 'Utilize de ferramentas No Code em laboratórios para criar o qued desejar', 'https://eurofarma.com.br/storage/files/euron%20release.jpg');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Plataforma Clic', 'INOVACAO', 'Aprenda uma das principais plataformas da Eurofarma, o Clic, onde suas ideias fazem diferença','/imagens/Clic1.png');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Plataforma Kaizen', 'INOVACAO', 'Aprenda uma das principais plataformas da Eurofarma, o Kaizen, onde suas ideias podem fazer diferença', '/imagens/Kaizen1.png');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Programa EVA', 'INOVACAO', 'Aprenda sobre o robô queridinho da Eurofarma o EVA, seu parceiro para todos os momentos', '/imagens/Eva1.png');
+INSERT INTO tb_etapa (titulo, tema, descricao, url_imagem) VALUES ('Oficina Digital', 'DESENVOLVIMENTO', 'Utilize de ferramentas No Code em laboratórios para criar o que desejar', '/imagens/Oficina1.png');
 
 INSERT INTO tb_modulo (title, description, etapa_id) VALUES ('Introdução', 'Aprenda o básico.', 1);
 INSERT INTO tb_modulo (title, description, etapa_id) VALUES ('Como participar', 'Venha compartilhar suas ideias!', 1);
@@ -60,6 +60,10 @@ INSERT INTO tb_progresso_usuario (id_usuario, id_capitulo, status) VALUES (2, 1,
 INSERT INTO tb_progresso_usuario (id_usuario, id_capitulo, status) VALUES (3, 1, 'TERMINADO');
 
 INSERT INTO tb_insignia (nome, descricao) VALUES ('Seja Bem-vindo(a)!', 'Este é o seu primeiro acesso. Estamos muito felizes em ter você começando esta jornada conosco.');
+INSERT INTO tb_insignia (nome, descricao, etapa_id) VALUES ('Mestre do Clic', 'Complete o curso do Clic', 1);
+INSERT INTO tb_insignia (nome, descricao, etapa_id) VALUES ('Guerreiro Kaizen', 'Complete o curso do Kaizen', 2);
+INSERT INTO tb_insignia (nome, descricao, etapa_id) VALUES ('Companheiro EVA', 'Complete o curso do EVA', 3);
+INSERT INTO tb_insignia (nome, descricao, etapa_id) VALUES ('Dono da Oficina', 'Complete o curso da Oficina Digital', 4);
 INSERT INTO tb_insignia (nome, descricao) VALUES ('Mestre das Perguntas', 'Já fez 5 perguntas ao nosso chatbot. Você sabe exatamente como encontrar as respostas que precisa.');
 INSERT INTO tb_insignia (nome, descricao) VALUES ('Amigo do Assistente', 'Você interagiu 10 vezes com o chatbot. Ele já te considera um(a) grande parceiro(a) de conversa.');
 INSERT INTO tb_insignia (nome, descricao) VALUES ('Sempre Presente', 'Uma semana inteira de acessos! Seu comprometimento com o desenvolvimento é inspirador.');

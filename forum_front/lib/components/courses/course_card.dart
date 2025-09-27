@@ -82,7 +82,7 @@ class _CourseCardState extends State<CourseCard> {
                 borderRadius: BorderRadius.zero,
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(widget.course.urlImagem!),
+                  image: AssetImage("${widget.course.urlImagem}"),
                 ),
               ),
             ),

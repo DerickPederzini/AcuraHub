@@ -27,10 +27,6 @@ public class InsigneaService {
         return insigneas.stream().map(InsigneasDTOResponse::new).toList();
     }
 
-    @Transactional()
-    public void registerInsigneaForUser(String idUser, String idInsignia) {
-
-    }
 
     @Transactional
     public List<InsigneasDTOResponse> getAllInsigneasByUsuario(Long idUsuario) {

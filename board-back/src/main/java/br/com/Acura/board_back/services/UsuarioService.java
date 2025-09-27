@@ -4,16 +4,22 @@ import br.com.Acura.board_back.data.dtos.LoginRequest;
 import br.com.Acura.board_back.data.dtos.ResponsePerfilDTO;
 import br.com.Acura.board_back.data.dtos.ResponseUsuarioDTO;
 import br.com.Acura.board_back.entities.Usuario;
+import br.com.Acura.board_back.repositories.IInsigneaRepository;
 import br.com.Acura.board_back.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
 
     @Autowired
     IUsuarioRepository usuarioRepository;
+    @Autowired
+    IInsigneaRepository insigneaRepository;
 
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
@@ -30,6 +36,11 @@ public class UsuarioService {
         return new ResponseUsuarioDTO(usuario);
     }
 
+
+    @Transactional()
+    public void registerInsigneaForUser(String idUser, String idInsignia) {
+        
+    }
 
     public ResponsePerfilDTO findByIdPerfil(Long id) {
         Usuario usuario = usuarioRepository.findAllByIdWithInsignea(id).orElseThrow(() -> new RuntimeException("errro"));
