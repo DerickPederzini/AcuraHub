@@ -91,18 +91,31 @@ class _CapituloPageState extends State<CapituloPage> {
                   Text(
                     capitulo.titulo?.toUpperCase() ?? "",
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 24,
+                    style: TextStyle(
+                      fontSize: 36,
                       fontWeight: FontWeight.bold,
                       color: AppColors.blue_claro_2,
+                      fontFamily: AppFont.zen_loop
                     ),
                   ),
                   const SizedBox(height: 12),
 
                   if (capitulo.urlImagem != null)
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(capitulo.urlImagem!),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Container(
+                          width: double.infinity,
+                          height: capitulo.urlImagem != "" ? 280 : 0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(capitulo.urlImagem.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   if (capitulo.urlImagem != null) const SizedBox(height: 12),
 

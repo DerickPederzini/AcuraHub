@@ -91,10 +91,13 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                       ),
                     ),
                     isExpanded
-                        ? Text(
-                            "${widget.insignea.descricao}",
-                            style: TextStyle(color: AppColors.cinza_claro_1),
-                          )
+                        ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                          child: Text(
+                              "${widget.insignea.descricao}",
+                              style: TextStyle(color: AppColors.cinza_claro_1),
+                            ),
+                        )
                         : SizedBox(),
                     const SizedBox(height: 5),
 
@@ -174,7 +177,7 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                   });
                 },
                 icon: Icon(
-                  !isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
+                  isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
                 ),
               ),
             ],
