@@ -1,6 +1,7 @@
 package br.com.Acura.board_back.services;
 
 import br.com.Acura.board_back.data.dtos.RegisterRequest;
+import br.com.Acura.board_back.entities.Atuacao;
 import br.com.Acura.board_back.entities.Usuario;
 import br.com.Acura.board_back.repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class RegistroService {
         usuario.setSenha(usuarioDTO.senha());
         usuario.setCpf(usuarioDTO.cpf());
         usuario.setUsername(usuarioDTO.username());
+        usuario.setAtuacao(Atuacao.valueOf(usuarioDTO.atuacao()));
     }
 
 }

@@ -33,6 +33,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findAllByIdWithInsignea(@Param("id") Long id);
 
+    @Query("SELECT u FROM Usuario u LEFT JOIN FETCH u.usuarioInsigneas iu LEFT JOIN FETCH iu.insignea WHERE u.id = :id")
+    Optional<Usuario> findByIdWithInsigneas(@Param("id") Long id);
 
 
 }
