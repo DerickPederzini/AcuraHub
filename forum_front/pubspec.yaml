@@ -83,6 +83,10 @@ flutter:
     - family: Public Sans
       fonts:
        - asset: assets/fonts/PublicSans-Medium.ttf
+
+    - family: Zen Loop
+      fonts:
+       - asset: assets/fonts/ZenLoop-Italic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

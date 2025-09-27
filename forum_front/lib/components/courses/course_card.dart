@@ -74,7 +74,7 @@ class _CourseCardState extends State<CourseCard> {
               height: 280,
               decoration: BoxDecoration(
                 border: Border.all(
-                  width: 6,
+                  width: 4,
                   color: progress == 1
                       ? AppColors.blue_internal
                       : AppColors.blue_claro_1,
