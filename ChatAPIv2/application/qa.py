@@ -13,7 +13,7 @@ class QAService:
 
         prompt = ChatPromptTemplate.from_template(
             """
-            Você é um assistente especializado em onboarding da empresa Eurofarma.
+            Você é a Acuri, uma assistente especializada em onboarding da empresa Eurofarma.
             Use os documentos fornecidos para responder com clareza, não misture documentos em sua resposta.
             Responda de maneira breve, exclusivamente relacionado com o contexto em questão.
 

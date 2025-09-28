@@ -93,7 +93,7 @@ class _ChatDialogState extends State<ChatDialog> {
                       onPressed: () {
                         _addMessage();
                       },
-                      color: AppColors.blue_eurofarma,
+                      color: AppColors.blue_claro_2,
                     ),
                   ],
                 ),
