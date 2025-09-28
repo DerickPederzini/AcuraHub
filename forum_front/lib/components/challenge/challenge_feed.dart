@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:forum_front/constants/app_colors.dart';
 import 'package:forum_front/models/insignea.dart';
+import 'package:forum_front/services/userService.dart';
 
 class ChallengeFeed extends StatefulWidget {
   final Insignea insignea;
@@ -36,6 +37,10 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
       progress =
           widget.insignea.capitulosCompletos! / widget.insignea.totalCapitulos!;
     }
+  }
+
+  void _handleAddinsignia(int? idInsignia) async {
+    String message = await pushInsignia(idInsignia);
   }
 
   @override
@@ -150,6 +155,7 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                       ),
                       onPressed: progress == 1
                           ? () {
+                              _handleAddinsignia(widget.insignea.id);
                               setState(() {
                                 recompensaResgatada = true;
                               });

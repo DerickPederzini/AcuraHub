@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:forum_front/components/profile/profile_header.dart';
 import 'package:forum_front/components/profile/profile_stats.dart';
 import 'package:forum_front/components/profile/profile_tabs.dart';
+import 'package:forum_front/models/insignea_perfil.dart';
 import 'package:forum_front/pages/achievements_page.dart';
 import 'package:forum_front/services/userService.dart';
 
@@ -17,6 +18,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   int selectedTab = 0; // 0 = conquistas, 1 = notícias salvas
   List<String> info = [];
+  List<InsigneaPerfil> insignias = [];
 
   @override
   void initState() {
@@ -26,8 +28,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _handleInfo() async {
     final result = await decodeJwtForPerfil();
+    final resultInsignea = await fetchInsigea();
     setState(() {
       info = result;
+      insignias = resultInsignea;
     });
   }
 
@@ -50,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
           const ProfileStats(),
           const SizedBox(height: 16),
           ProfileTabs(selectedTab: selectedTab, onTabChange: handleTabChange),
-          Expanded(child: AchievementsPage(isTab: selectedTab == 0)),
+          Expanded(child: AchievementsPage(isTab: selectedTab == 0, insignias: insignias)),
         ],
       ),
     );

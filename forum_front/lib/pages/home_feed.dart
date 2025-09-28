@@ -16,34 +16,34 @@ class _HomeFeedState extends State<HomeFeed> {
   void initState() {
     homeNews = [
       News(
-        author: "EuroFarma",
-        titulo: "Venha ver as novidades!",
+        author: "Eurofarma",
+        titulo: "Novo Módulo Disponível!",
         body:
-            "Venha conhecer a mais nova novidade da Eurofarma, possuimos diversas novidades, elas são muitos novas, todas elas, são as novidades mais novas do mundo, nós amamos essas novidades, oh yeah so new and cool, *you'll become new again*",
+            "Lançamos o módulo *Boas Práticas de Produção*. Agora você poderá aprofundar seus conhecimentos em processos de qualidade, segurança e eficiência, garantindo ainda mais excelência no seu dia a dia.",
       ),
       News(
-        author: "EuroFarma",
-        titulo: "Venha ver as novidades!",
+        author: "Eurofarma",
+        titulo: "Curso de Onboarding Atualizado",
         body:
-            "Venha conhecer a mais nova novidade da Eurofarma, possuimos diversas novidades, elas são muitos novas, todas elas, são as novidades mais novas do mundo, nós amamos essas novidades, oh yeah so new and cool, *you'll become new again*",
+            "O curso de onboarding ganhou uma nova versão interativa com vídeos, quizzes e atividades práticas para tornar sua integração na Eurofarma ainda mais envolvente!",
       ),
       News(
-        author: "EuroFarma",
-        titulo: "Venha ver as novidades!",
+        author: "Eurofarma",
+        titulo: "Nova Funcionalidade no App",
         body:
-            "Venha conhecer a mais nova novidade da Eurofarma, possuimos diversas novidades, elas são muitos novas, todas elas, são as novidades mais novas do mundo, nós amamos essas novidades, oh yeah so new and cool, *you'll become new again*",
+            "Agora você pode acompanhar seu progresso em tempo real através da aba *Meu Desempenho*. Fique por dentro das suas conquistas e continue evoluindo conosco!",
       ),
       News(
-        author: "EuroFarma",
-        titulo: "Venha ver as novidades!",
+        author: "Eurofarma",
+        titulo: "Programa de Reconhecimento",
         body:
-            "Venha conhecer a mais nova novidade da Eurofarma, possuimos diversas novidades, elas são muitos novas, todas elas, são as novidades mais novas do mundo, nós amamos essas novidades, oh yeah so new and cool, *you'll become new again*",
+            "Chegou o sistema de *Insígnias e Recompensas*! Conquiste insígnias exclusivas ao completar cursos e participe do ranking mensal dos colaboradores mais engajados.",
       ),
       News(
-        author: "EuroFarma",
-        titulo: "Venha ver as novidades!",
+        author: "Eurofarma",
+        titulo: "Mentorias Online",
         body:
-            "Venha conhecer a mais nova novidade da Eurofarma, possuimos diversas novidades, elas são muitos novas, todas elas, são as novidades mais novas do mundo, nós amamos essas novidades, oh yeah so new and cool, *you'll become new again*",
+            "Conecte-se com especialistas da Eurofarma através de sessões de mentoria online. Uma oportunidade única de trocar experiências e acelerar seu desenvolvimento profissional.",
       ),
     ];
     super.initState();
