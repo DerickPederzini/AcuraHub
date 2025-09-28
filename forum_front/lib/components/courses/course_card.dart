@@ -129,7 +129,8 @@ class _CourseCardState extends State<CourseCard> {
                         context,
                         "/modulos",
                         arguments: widget.course.id,
-                      );
+                      )
+                      ;
                     },
                     style: OutlinedButton.styleFrom(
                       minimumSize: Size(double.infinity, 64),

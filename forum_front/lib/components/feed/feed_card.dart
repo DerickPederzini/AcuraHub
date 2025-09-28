@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forum_front/constants/app_colors.dart';
 import 'package:forum_front/constants/app_font.dart';
 import 'package:forum_front/constants/app_styles.dart';
 import 'package:forum_front/models/news.dart';
@@ -32,8 +33,14 @@ class _FeedCardState extends State<FeedCard> {
                     Row(
                       spacing: 8,
                       children: [
-                        CircleAvatar(radius: 12, child: Text("${widget.news.author[0]}"),),
-                        Text("${widget.news.author}", style: TextStyle(fontSize: 12)),
+                        CircleAvatar(
+                          radius: 12,
+                          child: Text("${widget.news.author[0]}"),
+                        ),
+                        Text(
+                          "${widget.news.author}",
+                          style: TextStyle(fontSize: 12),
+                        ),
                         Text("12h", style: TextStyle(fontSize: 12)),
                       ],
                     ),
@@ -49,9 +56,21 @@ class _FeedCardState extends State<FeedCard> {
                 SizedBox(height: 4),
                 Text("${widget.news.titulo}", style: TextStyle(fontSize: 18)),
                 Text(
-                  maxLines: 3,
+                  maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                   "${widget.news.body}",
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: TextStyle(fontSize: 18),
+                    backgroundColor: AppColors.blue_claro_1_opacity15,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                  ),
+                  onPressed: () => {
+                  },
+                  child: const Text("Ver Mais"),
                 ),
               ],
             ),

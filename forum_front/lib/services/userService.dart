@@ -31,8 +31,6 @@ Future<String> pushInsignia(int? idInsignia) async {
 
   int idUser = decodedToken["id"] as int;
 
-  print("bef");
-
   final response = await http.post(
     Uri.parse('http://localhost:8081/usuarios/perfil/insignias/$idUser/$idInsignia'),
     headers: {"Authorization": "Bearer $jwt"},
@@ -60,7 +58,6 @@ Future<List<InsigneaPerfil>> fetchInsigea() async {
 
   if (response.statusCode == 200) {
     List<dynamic> jsonList = jsonDecode(response.body);
-    print(jsonList);
     return jsonList.map((e) => InsigneaPerfil.fromJson(e)).toList();
   } else {
     throw Exception('Erro ao carregar etapas');

@@ -41,7 +41,6 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
 
   void _handleAddinsignia(int? idInsignia) async {
     String message = await pushInsignia(idInsignia);
-    print(message);
   }
 
   @override

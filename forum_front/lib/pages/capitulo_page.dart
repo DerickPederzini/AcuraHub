@@ -25,6 +25,13 @@ class _CapituloPageState extends State<CapituloPage> {
   late Future<List<Capitulo>> _capitulos;
   final Map<int, VideoPlayerController> _videoControllers = {};
 
+  final Map<String, List<String>> _questions = {
+    "Qual dessas opções você escolheria?": ["Opção A", "Opção B", "Opção C"],
+  };
+  // track answered state
+  bool _questionAnswered = false;
+  int? _selectedAnswer;
+
   @override
   void initState() {
     super.initState();
@@ -95,14 +102,17 @@ class _CapituloPageState extends State<CapituloPage> {
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
                       color: AppColors.blue_claro_2,
-                      fontFamily: AppFont.zen_loop
+                      fontFamily: AppFont.zen_loop,
                     ),
                   ),
                   const SizedBox(height: 12),
 
                   if (capitulo.urlImagem != null)
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 0),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 0,
+                      ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Container(
@@ -147,7 +157,32 @@ class _CapituloPageState extends State<CapituloPage> {
                       fontFamily: AppFont.public_sans,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  if ([1, 2, 3, 4].contains(capitulo.id)) ...[
+                    const Divider(),
+                    Text(
+                      _questions.keys.first,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ...List.generate(
+                      _questions.values.first.length,
+                      (index) => CheckboxListTile(
+                        title: Text(_questions.values.first[index]),
+                        value: _selectedAnswer == index,
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedAnswer = index;
+                            _questionAnswered = true;
+                          });
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+                  ],
                 ],
 
                 // Single Concluir button at the bottom
@@ -163,7 +198,7 @@ class _CapituloPageState extends State<CapituloPage> {
                     ),
                     onPressed: () => {
                       _concluirModulo(capitulos),
-                      Navigator.pushNamed(context, "/boards"),
+                      Navigator.pushNamed(context, "/")
                     },
                     child: const Text("Concluir Módulo"),
                   ),

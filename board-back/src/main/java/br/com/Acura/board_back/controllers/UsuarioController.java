@@ -3,11 +3,13 @@ package br.com.Acura.board_back.controllers;
 import br.com.Acura.board_back.data.dtos.ResponseInsigneasPerfilDTO;
 import br.com.Acura.board_back.data.dtos.ResponsePerfilDTO;
 import br.com.Acura.board_back.data.dtos.ResponseUsuarioDTO;
+import br.com.Acura.board_back.entities.Usuario;
 import br.com.Acura.board_back.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -16,6 +18,11 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @GetMapping
+    public ResponseEntity<List<ResponseUsuarioDTO>> getAll(){
+        return ResponseEntity.ok(usuarioService.getAll());
+    }
 
     @GetMapping("/perfil/{id}")
     public ResponseEntity<ResponsePerfilDTO> findUsuarioByIdPerfil(@PathVariable Long id) {

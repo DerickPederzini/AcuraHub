@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,12 +38,12 @@ public class UsuarioService {
     public ResponseUsuarioDTO findByEmailAndSenha(LoginRequest request) {
         Usuario usuario = usuarioRepository.findByEmail(request.email()).orElseThrow(() -> new RuntimeException("yeah"));
 
-//        if (!passwordEncoder.matches(request.senha(), usuario.getSenha())) {
-//            throw new RuntimeException();
-//        }
-        if (!request.senha().equalsIgnoreCase(usuario.getSenha())){
-            throw new RuntimeException("yes");
+        if (!passwordEncoder.matches(request.senha(), usuario.getSenha())) {
+            throw new RuntimeException();
         }
+//        if (!request.senha().equalsIgnoreCase(usuario.getSenha())){
+//            throw new RuntimeException("yes");
+//        }
         return new ResponseUsuarioDTO(usuario);
     }
 
@@ -95,5 +96,10 @@ public class UsuarioService {
     public ResponsePerfilDTO findByIdPerfil(Long id) {
         Usuario usuario = usuarioRepository.findAllByIdWithInsignea(id).orElseThrow(() -> new RuntimeException("errro"));
         return new ResponsePerfilDTO(usuario);
+    }
+
+
+    public List<ResponseUsuarioDTO> getAll() {
+        return usuarioRepository.findAll().stream().map(ResponseUsuarioDTO::new).toList();
     }
 }
