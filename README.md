@@ -17,20 +17,20 @@ Primeiramente, este é um aplicativo em **Flutter**, que utiliza **SpringBoot** 
 
 ## Passos
 1. Clone o repositório
-   ```
-   git clone <url-do-repositorio>
-   cd <nome-do-repositorio>
-   ```
+```
+git clone <url-do-repositorio>
+cd <nome-do-repositorio>
+```
 2. Instale as dependências (nas suas respectivas root)
-   ```
-   flutter pub get
-   mvn install
-   ```
+```
+flutter pub get
+mvn install
+```
 4. Inicie a aplicação
-   ```
-   mvnw spring-boot:run
-   flutter run
-   ```
+```
+mvnw spring-boot:run
+flutter run
+```
 
 ## Endpoints
 
