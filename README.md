@@ -91,7 +91,7 @@ Após completar um módulo do Onboarding, o colaborador poderá ganhar uma recom
 
 #### 4. O Perfil
 Aqui o colaborador pode encontrar suas informações pessoais, seu rank dentro do Onboarding, seus desafios e recompensas concluídas e as notícias que ele salvou.
----
+
 
 ## Melhorias Futuras
 
