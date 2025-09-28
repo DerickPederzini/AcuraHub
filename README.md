@@ -34,7 +34,36 @@ Primeiramente, este é um aplicativo em **Flutter**, que utiliza **SpringBoot** 
    flutter run
    ```
 
-# Explorando o Aplicativo
+## Endpoints
+
+### Token
+- `POST /user/auth/registrar` → cadastra novo usuário;
+- `POST /user/auth/login` → login de usuário existente;
+
+### Usuários
+- `GET /usuarios` → lista todos os usuários
+- `GET /usuarios/perfil/{id}` → busca informações do perfil do usuário por ID;
+- `POST /usuarios/perfil/insignias/{idUser}/{idInsignia}` → cria nova instância de insignia para o usuário;
+
+### Insígneas
+- `GET /insigneas` → lista todas as insígneas;
+- `GET /user/{id}` → busca insígnias por usuário;
+
+### Etapa
+- `GET /etapas` → lista todas as etapas;
+- `POST /etapas` → cria nova instância de etapa;
+
+### Módulos
+- `GET /modulos` → lista todos os módulos;
+- `GET /modulos/etapa/{id}` → busca todos os módulos de uma etapa;
+- `GET /modulos/etapa/{idEtapa}/user/{idUser}` → busca todos os módulos que estão em uma etapa por usuário;
+
+### Capítulos
+- `GET /capitlos` → lista todos os capitulos;
+- `GET /capitlos/modulo/{id}` → busca todos os capítulos de um módulo;
+- `POST /modulos/progresso/user/{idCapitulo}/{idUser}` → cria uma nova instância de progresso do usuário ao completar um capítulo;
+
+# Explorando a Aplicação
 
 O EurONBoarding foi pensado para otimizar o processo de On Boarding dos colaboradores da Eurofarma nas suas ferramentas digitais.
 
