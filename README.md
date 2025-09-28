@@ -14,6 +14,8 @@ Primeiramente, este é um aplicativo em **Flutter**, que utiliza **SpringBoot** 
 ## Pré-requisitos
 - Java (Versão 21)
 - Flutter (^3.8.1)
+- Python (Versão 3.11)
+- Ollama (Modelo 3.2)
 
 ## Passos
 1. Clone o repositório
@@ -61,6 +63,12 @@ flutter run
 - `GET /capitlos/modulo/{id}` → busca todos os capítulos de um módulo;
 - `POST /modulos/progresso/user/{idCapitulo}/{idUser}` → cria uma nova instância de progresso do usuário ao completar um capítulo;
 
+### Ingestão
+- `POST /ingest` → ingere os documentos PDF;
+
+### Chat
+- `POST /chat` → envia uma query para a API com a pergunta do usuário;
+
 # Explorando a Aplicação
 
 O EurONBoarding foi pensado para otimizar o processo de On Boarding dos colaboradores da Eurofarma nas suas ferramentas digitais.
@@ -90,10 +98,13 @@ Após completar um módulo do Onboarding, o colaborador poderá ganhar uma recom
 #### 4. O Perfil
 Aqui o colaborador pode encontrar suas informações pessoais, seu rank dentro do Onboarding, seus desafios e recompensas concluídas e as notícias que ele salvou.
 
+### 5. Chat
+Nessa tela o colaborador pode realizar perguntas relacionadas ao processo de onboarding e os conteúdos dos módulos para o chat Acuri.
+
 
 ## Melhorias Futuras
 
-Estamos planejando as seguintes melhorias para as próximas versões do Natura Conecta:
+Estamos planejando as seguintes melhorias para as próximas versões do EurONboarding:
 
 - **Notícias responsívas:** Atualmente as notícias são mocadas, mas os planos são de adicioná-las ao banco e atribuí-las a usuários quando estes à favoritarem
 - **Desafios com mais recompensas:** Adicionar mais itens de customização e novas recompensas personalizadas para cada usuário.
@@ -104,4 +115,4 @@ Estamos planejando as seguintes melhorias para as próximas versões do Natura C
 
 ## Feedback
 
-Qualquer feedback sobre o projeto é bem-vindo! Sinta-se à vontade para contribuir e ajudar a melhorar o Natura Conecta.
+Qualquer feedback sobre o projeto é bem-vindo! Sinta-se à vontade para contribuir e ajudar a melhorar o EurONboarding.
