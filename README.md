@@ -45,8 +45,8 @@ flutter run
 - `GET /usuarios/perfil/{id}` → busca informações do perfil do usuário por ID;
 - `POST /usuarios/perfil/insignias/{idUser}/{idInsignia}` → cria nova instância de insignia para o usuário;
 
-### Insígneas
-- `GET /insigneas` → lista todas as insígneas;
+### Insígnias
+- `GET /insigneas` → lista todas as insígnias;
 - `GET /user/{id}` → busca insígnias por usuário;
 
 ### Etapa
