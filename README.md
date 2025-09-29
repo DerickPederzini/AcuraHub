@@ -34,6 +34,11 @@ mvnw spring-boot:run
 flutter run
 ```
 
+4. Inicie o chat
+```
+uvicorn main:app
+```
+
 ## Endpoints
 
 ### Token
