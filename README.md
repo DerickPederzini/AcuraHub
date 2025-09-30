@@ -3,7 +3,7 @@
 ## EurONBoarding! 
 **Acura Grupo**
 
-Este é o nosso projeto anual do terceiro ano na FIAP, em parceria com a Eurofarma. O objetivo é ajudar a organização a alcançar suas metas com mais eficiência. Para atingir esse objetivo, estamos desenvolvendo um aplicação que visa dar um novo ar ao processo de OnBoarding da Eurofarma!
+Este é o nosso projeto anual do terceiro ano na FIAP, em parceria com a Eurofarma. O objetivo é ajudar na organização e a alcançar suas metas com mais eficiência. Para atingir esse objetivo, estamos desenvolvendo uma aplicação que visa dar um novo ar ao processo de OnBoarding da Eurofarma!
 
 Esta documentação tem como objetivo explicar o propósito da aplicação e como utilizá-lo.
 
