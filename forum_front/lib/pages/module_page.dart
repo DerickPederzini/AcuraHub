@@ -71,15 +71,28 @@ class _ModulePageState extends State<ModulePage> {
                   ),
                 ),
 
+                // Container(
+                //   width: double.infinity,
+                //   height: 280,
+                //   decoration: BoxDecoration(
+                //     gradient: LinearGradient(
+                //       begin: Alignment.topLeft,
+                //       end: Alignment.bottomRight,
+                //       colors: [AppColors.blue_claro_1, AppColors.blue_claro_2],
+                //     ),
+                //   ),
+                // ),
                 Container(
                   width: double.infinity,
                   height: 280,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [AppColors.blue_claro_1, AppColors.blue_claro_2],
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("${etapa.urlImagem}"),
                     ),
                   ),
                 ),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8,

@@ -11,10 +11,6 @@ orchestrator = Orchestrator(settings)
 def root():
     return {"message": "API está rodando!"}
 
-@router.get("/ping")
-async def ping():
-    return {"status": "ok"}
-
 @router.post("/ingest")
 async def ingest():
     await run_in_threadpool(orchestrator.ingest_pdfs)

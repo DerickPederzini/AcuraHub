@@ -37,7 +37,7 @@ Future<void> finishCapitulo(List<int?> capitulos) async {
       headers: {"Authorization": "Bearer $jwt"},
     );
     if (response.statusCode == 201) {
-      print("Nice dms");
+      return;
     } else {
       throw Exception('Erro ao carregar capitulos');
     }

@@ -31,8 +31,6 @@ public class EtapaController {
         return ResponseEntity.ok(etapas);
     }
 
-
-
     @PostMapping
     public ResponseEntity<EtapaDTOResponse> createEtapa(@RequestBody @Valid EtapaDTORequest request) {
         EtapaDTOResponse response = etapaService.create(request);

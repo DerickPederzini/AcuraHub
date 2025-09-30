@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/components/navigation/drawer.dart';
+import 'package:forum_front/constants/app_colors.dart';
+import 'package:forum_front/constants/app_font.dart';
 import 'package:forum_front/models/capitulo.dart';
 import 'package:forum_front/services/capituloService.dart';
 import 'package:video_player/video_player.dart';
@@ -22,6 +24,13 @@ class CapituloPage extends StatefulWidget {
 class _CapituloPageState extends State<CapituloPage> {
   late Future<List<Capitulo>> _capitulos;
   final Map<int, VideoPlayerController> _videoControllers = {};
+
+  final Map<String, List<String>> _questions = {
+    "Qual dessas opções você escolheria?": ["Opção A", "Opção B", "Opção C"],
+  };
+  // track answered state
+  bool _questionAnswered = false;
+  int? _selectedAnswer;
 
   @override
   void initState() {
@@ -88,18 +97,35 @@ class _CapituloPageState extends State<CapituloPage> {
                 for (var capitulo in capitulos) ...[
                   Text(
                     capitulo.titulo?.toUpperCase() ?? "",
-                    style: const TextStyle(
-                      fontSize: 24,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 36,
                       fontWeight: FontWeight.bold,
-                      color: Colors.pinkAccent,
+                      color: AppColors.blue_claro_2,
+                      fontFamily: AppFont.zen_loop,
                     ),
                   ),
                   const SizedBox(height: 12),
 
                   if (capitulo.urlImagem != null)
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(capitulo.urlImagem!),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 0,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Container(
+                          width: double.infinity,
+                          height: capitulo.urlImagem != "" ? 280 : 0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(capitulo.urlImagem.toString()),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   if (capitulo.urlImagem != null) const SizedBox(height: 12),
 
@@ -123,19 +149,56 @@ class _CapituloPageState extends State<CapituloPage> {
                   if (capitulo.urlVideo != null) const SizedBox(height: 12),
 
                   Text(
-                    capitulo.body ?? "",
-                    style: const TextStyle(fontSize: 16, height: 1.5),
+                    (capitulo.body ?? "").replaceAll(r'\n', '\n'),
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      height: 1.6,
+                      fontFamily: AppFont.public_sans,
+                    ),
                   ),
-                  const SizedBox(height: 24),
+                  if ([1, 2, 3, 4].contains(capitulo.id)) ...[
+                    const Divider(),
+                    Text(
+                      _questions.keys.first,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ...List.generate(
+                      _questions.values.first.length,
+                      (index) => CheckboxListTile(
+                        title: Text(_questions.values.first[index]),
+                        value: _selectedAnswer == index,
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedAnswer = index;
+                            _questionAnswered = true;
+                          });
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+                  ],
                 ],
 
                 // Single Concluir button at the bottom
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: TextStyle(fontSize: 18),
+                      backgroundColor: AppColors.blue_claro_1_opacity15,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                    ),
                     onPressed: () => {
                       _concluirModulo(capitulos),
-                      Navigator.pushNamed(context, "/"),
+                      Navigator.pushNamed(context, "/")
                     },
                     child: const Text("Concluir Módulo"),
                   ),

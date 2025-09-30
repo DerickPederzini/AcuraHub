@@ -48,7 +48,7 @@ class _RegisterFormState extends State<RegisterForm> {
   String cpf = "";
   bool isLoading = false;
   List<String> atuacoes = [
-    'SELECIONE UMA OPÇÃO',
+    'SELECIONE UMA ATUAÇÃO',
     'DESENVOLVEDOR',
     'MARKETING',
     'GESTOR',
@@ -162,23 +162,31 @@ class _RegisterFormState extends State<RegisterForm> {
             },
           ),
           SizedBox(height: 16),
-          DropdownMenu<String>(
-            initialSelection: atuacoes[0],
-            dropdownMenuEntries: atuacoes
-                .map(
-                  (atuacao) => DropdownMenuEntry<String>(
-                    value: atuacao,
-                    label: atuacao.toString(),
-                  ),
-                )
-                .toList(),
-            onSelected: (String? newValue) {
-              setState(() {
-                isSelected = newValue;
-              });
-            },
+          SizedBox(
+            width: double.infinity,
+            child: DropdownButtonFormField<String>(
+              value: isSelected!.isEmpty ? atuacoes[0] : isSelected,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 16,
+                ),
+              ),
+              isExpanded: true,
+              items: atuacoes.map((atuacao) {
+                return DropdownMenuItem<String>(
+                  value: atuacao,
+                  child: Text(atuacao),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  isSelected = newValue;
+                });
+              },
+            ),
           ),
-
           SizedBox(height: 64),
           FormButtonFill(
             buttonText: "Criar",

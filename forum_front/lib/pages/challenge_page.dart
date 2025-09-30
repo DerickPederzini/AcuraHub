@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/components/challenge/challenge_feed.dart';
-import 'package:forum_front/components/chat/chat_button.dart';
 import 'package:forum_front/constants/app_colors.dart';
 import 'package:forum_front/services/achievementService.dart';
 

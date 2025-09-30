@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:forum_front/constants/app_colors.dart';
-import 'package:forum_front/models/challenge.dart';
 import 'package:forum_front/models/insignea.dart';
+import 'package:forum_front/services/userService.dart';
 
 class ChallengeFeed extends StatefulWidget {
   final Insignea insignea;
@@ -27,12 +27,20 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
     totalCapitulos = widget.insignea.totalCapitulos ?? 0;
     capitulosCompletos = widget.insignea.capitulosCompletos ?? 0;
 
+    progress = capitulosCompletos / totalCapitulos;
     progress = 0.0;
+    if (widget.insignea.id == 1) {
+      progress = 1;
+    }
     if (widget.insignea.totalCapitulos != null &&
         widget.insignea.totalCapitulos! > 0) {
       progress =
           widget.insignea.capitulosCompletos! / widget.insignea.totalCapitulos!;
     }
+  }
+
+  void _handleAddinsignia(int? idInsignia) async {
+    String message = await pushInsignia(idInsignia);
   }
 
   @override
@@ -50,10 +58,13 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               ShaderMask(
                 shaderCallback: (bounds) => LinearGradient(
-                  colors: [AppColors.amarelo_eurofarma, Colors.orange, Colors.red],
+                  colors: [
+                    AppColors.amarelo_eurofarma,
+                    Colors.orange,
+                    Colors.red,
+                  ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ).createShader(bounds),
@@ -64,7 +75,6 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                       Colors.white, // precisa ser branco pra pegar o gradiente
                 ),
               ),
-              
 
               //Tudo normar se usar esse, sem branco picotado
               // FaIcon(
@@ -72,7 +82,6 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
               //   size: 40,
               //   color: AppColors.amarelo_eurofarma,
               // ),
-
               const SizedBox(width: 10.0),
               Expanded(
                 child: Column(
@@ -87,32 +96,66 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                       ),
                     ),
                     isExpanded
-                        ? Text(
-                            "${widget.insignea.descricao}",
-                            style: TextStyle(color: AppColors.cinza_claro_1),
-                          )
+                        ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                          child: Text(
+                              "${widget.insignea.descricao}",
+                              style: TextStyle(color: AppColors.cinza_claro_1),
+                            ),
+                        )
                         : SizedBox(),
                     const SizedBox(height: 5),
 
-                    LinearProgressIndicator(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                      value: progress,
-                      minHeight: 12,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        AppColors.blue_eurofarma,
+                    SizedBox(
+                      height: 12,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                        child: Stack(
+                          children: [
+                            Container(color: Colors.grey[300]),
+                            FractionallySizedBox(
+                              alignment: Alignment.centerLeft,
+                              widthFactor: progress,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.amarelo_eurofarma,
+                                      Colors.orange,
+                                      Colors.red,
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
 
+                    // LinearProgressIndicator(
+                    //   borderRadius: BorderRadius.all(Radius.circular(12)),
+                    //   value: progress,
+                    //   minHeight: 12,
+                    //   backgroundColor: Colors.grey[300],
+                    //   valueColor: const AlwaysStoppedAnimation<Color>(
+                    //     AppColors.blue_eurofarma,
+                    //   ),
+                    // ),
                     const SizedBox(height: 24),
 
                     TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: progress == 1 ? AppColors.blue_claro_1 : AppColors.cinza_escuro_2,
+                        backgroundColor: progress == 1
+                            ? AppColors.blue_claro_1
+                            : AppColors.cinza_escuro_2,
                         foregroundColor: Colors.white,
                       ),
                       onPressed: progress == 1
                           ? () {
+                              _handleAddinsignia(widget.insignea.id);
                               setState(() {
                                 recompensaResgatada = true;
                               });
@@ -124,7 +167,9 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                             }
                           : null,
                       child: Text(
-                        recompensaResgatada ? "Resgatado" : "Resgatar Recompensa",
+                        recompensaResgatada
+                            ? "Resgatado"
+                            : "Resgatar Recompensa",
                       ),
                     ),
                   ],
@@ -138,7 +183,7 @@ class _ChallengeFeedState extends State<ChallengeFeed> {
                   });
                 },
                 icon: Icon(
-                  !isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
+                  isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
                 ),
               ),
             ],

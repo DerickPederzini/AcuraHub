@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:forum_front/constants/app_colors.dart';
 import 'package:forum_front/models/achievements.dart';
+import 'package:forum_front/models/insignea_perfil.dart';
 
 class AchievementCard extends StatefulWidget {
-  final Achievements achievements;
+  final InsigneaPerfil achievements;
 
   const AchievementCard({super.key, required this.achievements});
 
@@ -24,13 +25,13 @@ class _AchievementCardState extends State<AchievementCard> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              leading: Image.asset(widget.achievements.urlIcon!),
+              leading: Image.asset(widget.achievements.urlInsigea!),
               title: Text(
-                widget.achievements.title!,
+                widget.achievements.nome!,
                 style: TextStyle(color: AppColors.branco),
               ),
               subtitle: Text(
-                widget.achievements.description!,
+                widget.achievements.descricao!,
                 style: TextStyle(color: AppColors.branco),
               ),
             ),
