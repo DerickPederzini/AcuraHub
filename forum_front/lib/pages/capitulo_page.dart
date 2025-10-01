@@ -109,8 +109,8 @@ class _CapituloPageState extends State<CapituloPage> {
 
                   if (capitulo.urlImagem != null)
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 20,
+                      padding: EdgeInsets.symmetric(
+                        vertical: capitulo.urlImagem != "" ? 20 : 0,
                         horizontal: 0,
                       ),
                       child: ClipRRect(
@@ -184,6 +184,8 @@ class _CapituloPageState extends State<CapituloPage> {
                     const SizedBox(height: 24),
                   ],
                 ],
+
+                
 
                 // Single Concluir button at the bottom
                 SizedBox(
