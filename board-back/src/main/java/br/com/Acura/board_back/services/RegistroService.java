@@ -20,7 +20,7 @@ public class RegistroService {
         Usuario usuario = new Usuario();
         toEntity(usuario, request);
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-
+        System.out.println(usuario.getSenha());
         usuarioRepository.save(usuario);
     }
 

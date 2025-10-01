@@ -14,7 +14,7 @@ class QAService:
         prompt = ChatPromptTemplate.from_template(
             """
             Você é a Acuri, uma assistente especializada em onboarding da empresa Eurofarma.
-            Use os documentos fornecidos para responder com clareza, não misture documentos em sua resposta.
+            Use os documentos fornecidos para responder com clareza, não misture documentos em sua resposta e não invente.
             Responda de maneira breve, exclusivamente relacionado com o contexto em questão.
 
             Pergunta: {input}

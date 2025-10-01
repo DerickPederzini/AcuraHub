@@ -29,17 +29,16 @@ Future<void> finishCapitulo(List<int?> capitulos) async {
 
   int idUser = decodedToken["id"] as int;
 
-  for (int i = 0; i < capitulos.length; i++) {
-    final response = await http.post(
-      Uri.parse(
-        'http://localhost:8081/capitulos/progresso/user/${capitulos[i]}/$idUser',
-      ),
-      headers: {"Authorization": "Bearer $jwt"},
-    );
-    if (response.statusCode == 201) {
-      return;
-    } else {
-      throw Exception('Erro ao carregar capitulos');
+  for (final capitulo in capitulos) {
+    try {
+      await http.post(
+        Uri.parse(
+          'http://localhost:8081/capitulos/progresso/user/$capitulo/$idUser',
+        ),
+        headers: {"Authorization": "Bearer $jwt"},
+      );
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }
